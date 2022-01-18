@@ -1,0 +1,63 @@
+﻿@model restaurant.Models.EF.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 mt-5">
+    <div class="card-body">
+        <h4 class="text-left text-success"><span class="font-weight-normal">Them San Pham</span></h4>
+        <hr class="text-dark" />
+        @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="control-label">Ten Loai San Pham<span class="text-danger">*</span></label>
+                    @Html.DropDownList("CategoryID", null, new { htmlAttributes = new { @class = "form-control col-12" } })
+                    @Html.ValidationMessageFor(model => model.Category.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label class="control-label">Ten San Pham<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Ten San Pham" } })
+                    @Html.ValidationMessageFor(model => model.NameProduct, "vui long khong de trong!", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label class="control-label">Anh San Pham<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Anh San Pham" } })
+                    <div>
+                        <input type="file" name="file" />
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Images, "vui long khong de trong!", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label class="control-label">Date<span class="text-danger">*</span></label>
+                    @*@Html.EditorFor(model => model.Date.Value.ToString("dd-MM-yyyy"), new { htmlAttributes = new { @class = "form-control col-12", Type="date" } })*@
+                    <input type="date" id="Date" name="Date" class="form-control" value="@Model.Date.Value.ToString("yyyy-MM-dd")" />
+                    @Html.ValidationMessageFor(model => model.Date, "vui long khong de trong!", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-12 col-md-6">
+                    <label class="control-label">Gia San Pham<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Gia San Pham" } })
+                    @Html.ValidationMessageFor(model => model.UnitPrice, "vui long khong de trong!", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 ml-3 col-md-10 p-0">
+                    <input type="submit" value="Create" class="btn btn-outline-success" />
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-dark" })
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,210 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Custom fonts for this template-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/images/logoCofee.png" type="image/x-icon">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+    <!-- Custom styles for this template-->
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Admin/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        html {
+            width: auto !important;
+        }
+    </style>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+
+    <!-- Custom styles for this template -->
+</head>
+<body id="page-top" class="mx-3 p-0 bg-admin">
+
+    @*<div class="collapse show" id="collapseExample">*@
+    <div id="transition" class="d-flex flex-column flex-shrink-0 p-0 text-white bg-dark siderbar hide-text" style="z-index: 1200;">
+        <div class="overflow-auto">
+            <a style="padding: 10px; display: -webkit-inline-box!important" href="@Url.Action("Index","Home")" class="d-flex mb-3 mb-md-0 me-md-auto mx-auto text-white text-decoration-none border-bottom hide-text">
+                <img class="ml-2 my-auto hide-text" src="~/images/logoCofee.png" width="50" height="50">
+                <h4 class="hide-text ml-3 hide-text text-left" style="display: table-caption;"><span class="text-warning">Mas</span>ter Coff<span class="text-warning">ee</span></h4>
+            </a>
+        </div>
+        <hr class="my-2 text-white hide-text" />
+        <div class="overflow-auto hide-text">
+            <ul class="nav nav-pills flex-column mb-auto text-left" style="display: grid;">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index","Admin")" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 font-weight-bold" id="dashboard">
+                        <i style="font-size: 24px;" class="fas fa-chart-line"></i><p class="ml-2 mb-0" title="Dashboard">Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/categories" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0" title="Categories">
+                        <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">Loại Sản Phẩm</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/roles" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Roles">
+                        <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">Roles</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Users">
+                        <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">Users</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/products" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Products">
+                        <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">Products</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orders" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Orders">
+                        <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">Orders</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/orderdestails" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="OrderDestails">
+                        <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">OrderDestails</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <hr />
+        @*<div class="overflow-auto">
+                <ul class="navbar-nav ml-auto siderbar-item-show text-left pl-3">
+
+                    @Html.Partial("IndexPartialView\\NavbarAdminUlView")
+
+                </ul>
+            </div>*@
+        <div class="btn hide-siderbar" id="hide-button" style="display: none; opacity: 0; z-index: 1200 !important; background-color: #080808;"><i class="fas fa-caret-square-left text-white"></i></div>
+        <div class="btn show-siderbar hiden" id="show-button" style="display: none; z-index: 1200 !important; background-color: #080808;"><i class="fas fa-caret-square-right text-white"></i></div>
+    </div>
+    </div>
+
+    <div class="m-0 admin-main">
+
+
+        <!-- Topbar Navbar -->
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-dark sticky-top p-0">
+            @*<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
+                    <i class="fas fa-align-left"></i>
+                </button>*@
+            <a style="padding: 0px;" href="#" class="navbar-brand navbar-branch-admin text-white hide-text">
+                <img class="ml-2 my-auto hide-text" src="~/images/logoCofee.png" width="50" height="50">
+                <h4 class="hide-text p-2 m-auto hide-text text-left" style="display: table-caption;"><span class="text-warning my-auto">Mas</span>ter Coff<span class="text-warning">ee</span></h4>
+            </a>
+            @*<a class="navbar-brand"><img class="ml-2 my-auto" src="~/images/logoCofee.png" width="50" height="50"></a>*@
+
+            <button class="navbar-toggler text-white border-white" style="margin-right: 10px;" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="text-white"><i class="fas fa-sliders-h"></i></span>
+            </button>
+            @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm text-white"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>*@
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav ml-auto">
+
+                    @Html.Partial("IndexPartialView\\NavbarAdminUlView")
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <!--<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow sticky-top">
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <!--@*<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="fa fa-bars"></i>
+        </button>*@
+
+            @*topbar search*@
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>-->
+        <!-- Topbar Navbar -->
+        <!--<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+            </div>
+
+        </nav>-->
+        <!-- content -->
+        @RenderBody()
+        <footer class="mt-5" style="bottom: 0; position: fixed; width: 100%; left: 0;">
+            <div class="text-center bg-dark text-white p-2 m-0">
+                <p class="m-0 text-center"> -- Power by vutuankiet2411@gmail.com -- </p>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Admin/js")
+    @RenderSection("Scripts", required: false)
+
+
+
+</body>
+<script>
+    (function () {
+        'use strict'
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    })()
+
+
+    $(document).ready(function () {
+        $("#hide-button").click(function () {
+            $("#show-button").show().css({ 'opacity': '1', 'padding-right': '0!important' })
+            $("#hide-button").hide().css({ 'opacity': '0' })
+            $('#transition').css({ 'width': '0px'})
+            $('.hide-text').css({ 'display': 'none!important' })
+
+
+        });
+        $("#show-button").click(function () {
+            $("#hide-button").show().css({ 'opacity': '1', 'padding-right': '0!important' })
+            $("#show-button").hide().css({ 'opacity': '0' })
+            $('#transition').css({ 'width': '180px'})
+        });
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+</script>
+</html>

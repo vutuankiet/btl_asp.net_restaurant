@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/images/logoCofee.png" type="image/x-icon">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
+    </script>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
+    <div class="bg-web">
+        <nav class="navbar navbar-expand-md navbar-light content-background sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-branch" href="#">
+                    <img src="~/images/logoCofee.png" height="50">
+                </a>
+                <button class="navbar-toggler text-white nav-menu" type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive">
+                    <span class="border border-light p-2 rounded"><i class="fas fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav m-auto nav-change main-nav">
+                        <li class="nav-item p-2">
+                            <!--<a class="nav-link text-light d-inline-block" href="home.html">-->
+                            @*nav-item-active active*@
+
+
+                            <!--</a>-->
+                            @Html.ActionLink(" Home", "Index", "Home", routeValues: null, htmlAttributes: new { id = "homeLink", @class = "font-weight-bold border-bottom-animation fas fa-home" })
+
+                        </li>
+                        <li class="nav-item p-2">
+
+                            @Html.ActionLink(" Menu", "Menu", "Home", routeValues: null, htmlAttributes: new { id = "menuLink", @class = "font-weight-bold border-bottom-animation fas fa-calendar-minus" })
+
+                        </li>
+                        <li class="nav-item p-2">
+
+                            @Html.ActionLink(" Order", "Payment", "Home", routeValues: null, htmlAttributes: new { id = "paymentLink", @class = "text-center font-weight-bold border-bottom-animation fas fa-shopping-cart" })
+
+                        </li>
+                        <li class="nav-item p-2 dropdown">
+                            <a class="text-center font-weight-bold border-bottom-animation far fa-list-alt" href="#" data-bs-toggle="dropdown"> Other</a>
+                            <ul class="dropdown-menu drop-menu text-center">
+                                <li>
+                                    @Html.ActionLink(" About", "About", "Home", routeValues: null, htmlAttributes: new { id = "aboutLink", @class = "dropdown-item drop-text font-weight-bold border-bottom-animation fas fa-users" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink(" Event", "Event", "Home", routeValues: null, htmlAttributes: new { id = "eventLink", @class = "dropdown-item drop-text font-weight-bold border-bottom-animation fas fa-gift" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink(" Contact", "Contact", "Home", routeValues: null, htmlAttributes: new { id = "contactLink", @class = "dropdown-item drop-text font-weight-bold border-bottom-animation fas fa-envelope-open-text" })
+                                </li>
+                            </ul>
+                        </li>
+                        @Html.Partial("IndexPartialView\\_LoginPartial")
+                        @*<li class="nav-item mx-2">
+                            <form class="form-inline form-group m-0" action="#">
+                                <input class="form-control mr-sm-2 bg-dark text-white search-animation" type="text" name="search" placeholder="Search.." aria-label="Search">
+                            </form>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="bg-web">
+            @RenderBody()
+        </div>
+        <footer>
+            <div class="bg-web text-light">
+                <div class="row m-0 p-2">
+                    <div class="col-12 col-md-6 col-sm-12 col-l-6 col-xl-3 p-3">
+                        <h4>ABOUT US</h4>
+                        <p>
+                            Master Blend tells their culinary story and story through the menu, constantly innovating seasonal
+                            dishes. The restaurant won a Michelin star one week after it opened.
+                        </p>
+                        <div class="text-center">
+                            <a href="#" class="text-info icon-web"><span><i class="fab fa-twitter"></i></span></a>
+                            <a href="#" class="text-primary icon-web"><span><i class="fab fa-facebook-f"></i></span></a>
+                            <a href="#" class="text-danger icon-web"><span><i class="fab fa-instagram"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-12 col-lg-6 col-xl-4 p-2">
+                        <div class="col-12">
+                            <h4 class="text-white">RECENT BLOG</h4>
+                            <div class="card text-warning background-hidden align-self-sm-end">
+                                <div class="row no-gutters">
+                                    <div class="col-sm-4 p-1 m-auto d-table">
+                                        <img src="../images/pizza1.png" class="card-img" alt="block-food">
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="card-body">
+                                            <h6 class="card-title">Even the all-powerful Pointing has no control about</h6>
+                                            <p class="card-text text-light">
+                                                <i class="far fa-calendar-alt text-warning"></i>
+                                                Sept 15, 2021 <i class="fas fa-user text-warning"></i> Amin
+                                            </p>
+                                            <p class="text-light"><i class="far fa-comment-dots text-warning"></i> 19</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6 col-lg-6 col-xl-2 text-center p-2 d-table">
+                        <h4>SERVICES</h4>
+                        <p><a class="text-light" href="#">Cooked</a></p>
+                        <p><a class="text-light" href="#">Deliver</a></p>
+                        <p><a class="text-light" href="#">Quality</a></p>
+                        <p><a class="text-light" href="#">Foods</a></p>
+                        <p><a class="text-light" href="#">Mixed</a></p>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-6 col-lg-6 col-xl-3 p-2">
+                        <h4>HAVE A QUESTIONS?</h4>
+                        <h5 class="text-warning">
+                            <span class="text-warning">
+                                <i size="16px"
+                                   class="fas fa-map-marker-alt"></i>
+                            </span>
+                            Location
+                        </h5>
+                        <p>128A, Ho Tung Mau, Mai Dich, Cau Giay, Ha Noi, Viet Nam</p>
+                        <h5>
+                            <a class="text-warning" href="#">
+                                <span><i size="16px" class="fas fa-phone-alt"></i></span> 0336 704
+                                581
+                            </a>
+                        </h5>
+                        <h5>
+                            <a class="text-warning" href="#">
+                                <span><i size="16px" class="far fa-envelope"></i></span>
+                                vutuankiet2411@gmail.com
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+                <div class="col-12 p-4 content-background">
+                    <h4 class="text-center text-light font-family font-footer">
+                        Copyright © 2021 All rights reserved | This
+                        template is made with by <i size="16px" class="fas fa-user"></i><a href="#"> VuTuanKiet2411@gmail.com</a>
+                    </h4>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // make it as accordion for smaller screens
+        if (window.innerWidth > 992) {
+
+            document.querySelectorAll('.navbar .nav-item').forEach(function (everyitem) {
+
+                everyitem.addEventListener('mouseover', function (e) {
+
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+
+                    if (el_link != null) {
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.add('show');
+                        nextEl.classList.add('show');
+                    }
+
+                });
+                everyitem.addEventListener('mouseleave', function (e) {
+                    let el_link = this.querySelector('a[data-bs-toggle]');
+
+                    if (el_link != null) {
+                        let nextEl = el_link.nextElementSibling;
+                        el_link.classList.remove('show');
+                        nextEl.classList.remove('show');
+                    }
+
+
+                })
+            });
+
+        }
+        // end if innerWidth
+    });
+    </script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!--<script>
+        $(document).ready(() => {-->
+    @* var list_items = $(".main-nav .nav-item");
+        var main_nav = $(".main-nav")
+        console.log(list_items)
+        list_items.click(() => {
+
+            list_items.removeClass("nav-active");
+            $(this).addClass("nav-active");
+            console.log(this)
+
+        })*@
+    <!--$(".main-nav .nav-item").click(function () {
+
+                $(".main-nav li").removeClass("nav-active")
+                $(this).addClass("nav-active")
+                console.log($(this))
+
+            })
+
+        })
+    </script>-->
+</body>
+</html>

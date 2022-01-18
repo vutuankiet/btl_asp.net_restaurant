@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Event";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #eventLink {
+        color: #f7b924 !important;
+    }
+</style>
+
+<section id="event">
+    <div class="bg-color section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center p-5">
+                    <h1 class="text-white text-center">Up Coming events</h1>
+                    <p class="text-white text-center">Decorations 100% complete here</p>
+                </div>
+                <div class="col-md-12 pb-5">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 left-images">
+                            <img width="100%" height="100%" src="~/images/res02.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-md-6 col-sm-6 details-text">
+                            <div class="content-holder">
+                                <h2>Joyful party</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eos suscipit earum voluptas aliquam recusandae, quae iure adipisci, inventore quia, quos delectus quaerat praesentium id expedita nihil illo accusantium, tempora.</p>
+                                <address>
+                                    <strong>Place: </strong>
+                                    <span class="text-white ml-1">1612 Collins Str, Victoria 8007</span>
+                                    <br>
+                                    <strong>Time: </strong>
+                                    <span class="text-white ml-1">07:30pm</span>
+                                </address>
+                                <a class="btn btn-outline-warning" href="events-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="col-12 p-0">
+    <div class="text-center">
+        <ul class="list-group w-100 list-group-flush text-warning font-family menu-coffee">
+            <li class="list-group-item bg-dark text-center"><a href="menu.html">View Full Menu</a></li>
+        </ul>
+    </div>
+</div>
+<div class="row p-2 content-background m-auto">
+    <div class="col-12 col-sm-12 col-md-6 padding">
+        <iframe class="w-100"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8876739948123!2d105.7739293148618!3d21.037179985993827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455f90fe8ad65%3A0xec38b94cb36de0ab!2zSOG7hyBUaOG7kW5nIMSQw6BvIHThuqFvIENOVFQgLSBUM0ggSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1610878199329!5m2!1svi!2s"
+                width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false"
+                tabindex="0"></iframe>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 p-2">
+        <form class="was-validated w-100" action="#" method="post">
+            <div class="form-row">
+                <h2 class="text-light col-12 text-center">BOOK A TABLE</h2>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <input class="form-control is-valid background-hidden text-white" type="text"
+                           name="firstName" placeholder="First Name" required>
+                    <div class="invalid-feedback">
+                        Please choose a firstname.
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <input class="form-control is-valid background-hidden text-white" type="text"
+                           name="lastName" placeholder="Last Name" required>
+                    <div class="invalid-feedback">
+                        Please choose a lastname.
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <input class="form-control is-valid background-hidden text-white" type="date" name="date"
+                           placeholder="Date" required>
+                    <div class="invalid-feedback">
+                        Please choose a date of reservation.
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <input class="form-control is-valid background-hidden text-white" type="time" min="08:00"
+                           max="21:00" name="time" placeholder="Time" required>
+                    <div class="invalid-feedback">
+                        Please choose a reservation time.
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <input class="form-control is-valid background-hidden text-white" type="tel" name="phone"
+                           pattern="[0-9]{10}" placeholder="Phone" required>
+                    <div class="invalid-feedback">
+                        Please choose a phone.
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <input class="form-control is-valid background-hidden text-white" type="email" name="email"
+                           placeholder="Email" required>
+                    <div class="invalid-feedback">
+                        Please choose a email.
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <textarea class="form-control is-valid background-hidden text-white"
+                              placeholder="Messenger"></textarea>
+                </div>
+                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="custom-control custom-checkbox mb-3">
+                        <input type="checkbox" class="custom-control-input" id="agree"
+                               required>
+                        <label class="custom-control-label" for="agree">
+                            <small>
+                                I agree to <a class="link" href="">the Terms of use and Privacy Policy</a>
+                            </small>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-12 col-sm-12">
+                    <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

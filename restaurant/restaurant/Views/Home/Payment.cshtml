@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Services Restaurants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model restaurant.Models.EF.Product
+
+<style>
+    #paymentLink {
+        color: #f7b924 !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row p-4 content-background">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4 overflow-content">
+            <h3 class="text-light">Number of orders placed*</h3>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-12 text-light">
+                    <div class="cart-list">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center text-warning">
+                                    <th>&nbsp;</th>
+                                    <th class="text-left">Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>UnitPrice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center text-white" id="deleteFirstRow">
+                                    <td class="align-middle"><img src="~/@Model.Images" class="size-image-food rounded-circle" alt="@Model.NameProduct"></td>
+                                    <td class="text-left align-middle">
+                                        <h5>@Model.NameProduct</h5>
+                                    </td>
+                                    <td class="quantity align-middle">
+                                        <div class="input-group align-middle">
+                                            <input type="number" name="UnitPrice" class="quantity form-control input-number text-center background-hidden border-0 text-light" id="price" value="@Model.UnitPrice" readonly disabled>
+                                        </div>
+                                    </td>
+                                    <td class="quantity align-middle">
+                                        <div class="input-group align-middle">
+                                            <input type="number" name="quantity" class="quantity form-control input-number text-center background-hidden border-0 text-light" id="numFood" readonly onchange="MoneyFood()" value="1" disabled>
+                                        </div>
+                                    </td>
+                                    <td class="total align-middle">$<span id="moneyFood">@Model.UnitPrice</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-4">
+
+            @if (Session["ID"] != null)
+            {
+                using (Html.BeginForm("AddToCart", "Home", new { id = Model.ID }))
+                {
+                    <div class="row">
+                        <h5 class="text-white col-12 ml-0 pl-0">Chinh Sua Don Hang</h5>
+                        <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                            <label class=" text-white">UserName<span class="text-danger">*</span></label>
+                            <input class="form-control col-12" readonly value="@Session["UserName"]" />
+                            @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                            @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
+                        </div>
+                        <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                            <label class=" text-white">Email<span class="text-danger">*</span></label>
+                            <input class="form-control col-12" readonly value="@Session["Email"]" />
+                            @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                            @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
+                        </div>
+                        <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                            <label class=" text-white">PhoneNumber<span class="text-danger">*</span></label>
+                            <input class="form-control col-12" readonly value="@Session["PhoneNumber"]" />
+                            @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                            @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
+                        </div>
+                        <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                            <label class=" text-white">Quantily<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Quantily", @Min = "1", @Max = "100" } });
+                            @Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })
+                        </div>
+                        <input type="submit" onclick="createAlert('Nice Work!','success',true,true,'pageMessages');" value="Order Now" data-toggle="modal1" data-target="#exampleModal1" class="btn btn-outline-warning" />
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-warning w-100 content-padding">
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-6 col-md-4 mt-5 mb-5">
+            <p><span class="border border-dark icon-service"><i class="far fa-address-card"></i></span></p>
+            <h3>EASY TO ORDER</h3>
+            <p>A comprehensive store for digital and large-scale orders, online booking, POS, online payments, customer data collection, customer retention and marketing solutions.</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 mt-5 mb-5">
+            <p><span class="border border-dark icon-service"><i class="fas fa-shipping-fast"></i></span></p>
+            <h3>FASTEST DELIVERY</h3>
+            <p>Quickly connect with the largest shipping companies in Vietnam and choose the fastest and cheapest shipping unit, customers can be assured of no worries.</p>
+        </div>
+        <div class="col-sm-12 col-sm-6 col-md-4 mt-5 mb-5">
+            <p><span class="border border-dark icon-service"><i class="fas fa-coffee"></i></span></p>
+            <h3>QUALITY COFFEE</h3>
+            <p>The quality of sweetness in coffee brings mellow and gentle taste, the freshness and perfection of the coffee bean brings satisfaction to customers.</p>
+        </div>
+    </div>
+</div>
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+@*@foreach (var item in Model)
+    {
+        <script>
+        function @item.ID-MoneyFood() {
+            var quantily = document.getElementById("numFood-@item.ID").value;
+            var price = document.getElementById("price-@item.ID").value;
+            if (quantily > 0) {
+                total = quantily * price * 1;
+                document.getElementById("moneyFood").innerHTML = total.toFixed(2);
+            }
+            else {
+                document.getElementById("moneyFirstFood").innerHTML = "not value!";
+            }
+        }
+        </script>
+    }*@

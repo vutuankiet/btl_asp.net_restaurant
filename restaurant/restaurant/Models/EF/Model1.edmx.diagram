@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="87eb1cb231064d9fb74944b7ddaa6bef" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="QL_NhaHangModel.BillInfor" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Bill" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Category" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Event" Width="1.5" PointX="5.75" PointY="9.25" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.OrderDestail" Width="1.5" PointX="10.5" PointY="4.875" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Order" Width="1.5" PointX="8.25" PointY="4.375" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Product" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Role" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.sysdiagram" Width="1.5" PointX="7.75" PointY="9.25" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Table" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.User" Width="1.5" PointX="3" PointY="4.5" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_BillInfor_Bills" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_BillInfor_Products" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_BillInfor_Users" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_Bills_Table" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_Products_Categories" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_OrderDestails_Orders" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_Orders_Products" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_Orders_Users" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_Users_Roles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

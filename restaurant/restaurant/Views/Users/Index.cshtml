@@ -1,0 +1,126 @@
+﻿@*@model IEnumerable<restaurant.Models.EF.User>*@
+@using PagedList.Mvc
+@model PagedList.IPagedList<restaurant.Models.EF.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+<!-- Page Heading -->
+@*<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-white">Loai San Pham</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm text-white btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+        </a>
+    </div>*@
+
+<!-- Content Row -->
+<div class="row text-white mt-5">
+    <div class="col-10 m-auto" style="background-color: #0000004a;">
+        <div class="card-body px-0">
+            <h2>Loai mat hang</h2>
+            <div class="d-flex">
+                <p>
+                    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-outline-success btn-sm text-white" })
+                </p>
+                <div class="ml-auto">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-inline form-group">
+                            <input id="keyword" name="keyword" class="form-control" placeholder="Nhap tu khoa can tim" value="@ViewBag.Keyword" />
+                            <input id="page" name="page" value="1" hidden />
+                            <button type="submit" class="btn btn-primary ml-3">Tim Kiem</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="overflow-auto">
+            <table class="table table-sm table-hover table-striped text-white">
+                <thead>
+                    <tr>
+                        <th>
+                            Ten Role
+                        </th>
+                        <th>
+                            Ten Nguoi Dung
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            So Dien Thoai
+                        </th>
+                        <th>
+                            Trang Thai
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="DataSearching">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Role.NameRoles)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.Status)*@
+
+                                @{
+                                    string classCss = (bool)item.Status ? "btn-success" : "btn-danger";
+                                    string content = (bool)item.Status ? "On" : "Off";
+                                }
+
+                                <button class="btn btn-block btn-sm @classCss border-dark">@content</button>
+                                @*@Html.ValidationMessageFor(modelItem => item.Status, "", new { @class = "text-danger"})*@
+
+                            </td>
+                            <td class="text-nowrap" width="1px">
+                                @Html.ActionLink("Chinh sua", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
+                                @Html.ActionLink("Chi tiet", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
+                                @Html.ActionLink("Xoa", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+
+@*<script>
+        $(document).ready(function () {
+            $("#keyword").click(function () {
+                var SearchValue = $("#keyword").val();
+                var SetData = $("#DataSearching");
+                SetData.html("");
+
+                $.ajax({
+                    type: "post";
+                    url: "Castegories/Index?keyword" + SearchValue,
+                    contentType: "html",
+                    success: function (result)
+                });
+            });
+        });
+    </script>*@

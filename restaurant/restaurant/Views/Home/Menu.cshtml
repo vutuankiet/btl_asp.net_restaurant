@@ -1,0 +1,322 @@
+﻿@*@using restaurant.Model*@
+@*@model LoginViewModel*@
+@using PagedList.Mvc
+@model PagedList.IPagedList<restaurant.Models.EF.Product>
+
+@{
+    ViewBag.Title = "Menu Restaurants";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #menuLink {
+        color: #f7b924 !important;
+    }
+
+    #pageMessages {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        width: 15%;
+    }
+
+    .alert {
+        position: relative;
+    }
+
+        .alert .close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1em;
+        }
+
+        .alert .fa {
+            margin-right: .3em;
+        }
+</style>
+
+<div class="content-background p-4">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col text-center .product-content">
+                <h1 class="text-warning font-family">Discover</h1>
+                <h1 class="text-white">Featured menu week</h1>
+            </div>
+        </div>
+        <div class="row d-md-flex">
+            <div class="col-lg-12 ftco-animate p-0">
+                <div class="row">
+                    <div class="col-md-12 nav-link-wrap mb-5">
+                        <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link btn btn-outline-warning border-bottom active m-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">All</a>
+                            <a class="nav-link btn btn-outline-warning border-bottom m-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="true"><i class="fas fa-utensils"></i> Main Dish</a>
+                            <a class="nav-link btn btn-outline-warning border-bottom m-1" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false"><i class="fas fa-glass-cheers"></i> Drinks</a>
+                            <a class="nav-link btn btn-outline-warning border-bottom m-1" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false"><i class="fas fa-birthday-cake"></i> Cake</a>
+                            <li class="nav-item m-1">
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="form-inline form-group m-0" action="#">
+                                        <input class="form-control mr-sm-2 bg-dark text-white search-animation" type="text" value="@ViewBag.Keyword" id="keyword" name="keyword" placeholder="Search.." aria-label="Search">
+                                        <input id="page" name="page" value="1" hidden />
+                                        <button type="submit" class="btn btn-primary ml-3" hidden>Tim Kiem</button>
+                                    </div>
+                                }
+                            </li>
+                        </div>
+                    </div>
+                    <div class="col-md-12 align-items-center">
+                        <div class="tab-content ftco-animate" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-1-tab">
+                                <div class="row m-auto" id="DataSearching">
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 py-2 text-left">
+                                            <div class="card background-hidden text-light w-100 shadow-animation border border-secondary">
+                                                <div class="overflow-hidden border-bottom-animation">
+                                                    <img src="~/@item.Images" class="card-img-top image-zoom" alt="@item.NameProduct">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="text-warning">@item.NameProduct</h4>
+                                                    <h5>@item.UnitPrice $</h5>
+                                                    @if (@*User.Identity.IsAuthenticated &&*@ Session["ID"] != null)
+                                                    {
+                                                        using (Html.BeginForm("Payment", "Home", new { id = item.ID }))
+                                                        {
+                                                                <input type="submit" onclick="createAlert('Nice Work!','success',true,true,'pageMessages');" value="Order Now" data-toggle="modal1" data-target="#exampleModal1" class="btn btn-outline-warning" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @*<a href="#" class="btn btn-outline-warning">Order Now</a>*@
+                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                                                            Order Now
+                                                        </button>
+
+                                                        <!-- Modal -->
+
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
+                                <div class="row m-auto">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.Category.Name == "Food")
+                                        {
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 py-2 text-left">
+                                            <div class="card background-hidden text-light w-100 shadow-animation border border-secondary">
+                                                <div class="overflow-hidden border-bottom-animation">
+                                                    <img src="~/@item.Images" class="card-img-top image-zoom" alt="@item.NameProduct">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="text-warning">@item.NameProduct</h4>
+                                                    <h5>@item.UnitPrice $</h5>
+                                                    @if (@*User.Identity.IsAuthenticated &&*@ Session["ID"] != null)
+                                                    {
+                                                        using (Html.BeginForm("Payment", "Home", new { id = item.ID }))
+                                                        {
+                                                                <input type="submit" onclick="createAlert('Nice Work!','success',true,true,'pageMessages');" value="Order Now" data-toggle="modal1" data-target="#exampleModal1" class="btn btn-outline-warning" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @*<a href="#" class="btn btn-outline-warning">Order Now</a>*@
+                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                                                            Order Now
+                                                        </button>
+
+                                                        <!-- Modal -->
+
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
+                                <div class="row m-auto">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.Category.Name == "Drink")
+                                        {
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 py-2 text-left">
+                                            <div class="card background-hidden text-light w-100 shadow-animation border border-secondary">
+                                                <div class="overflow-hidden border-bottom-animation">
+                                                    <img src="~/@item.Images" class="card-img-top image-zoom" alt="@item.NameProduct">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="text-warning">@item.NameProduct</h4>
+                                                    <h5>@item.UnitPrice $</h5>
+                                                    @if (@*User.Identity.IsAuthenticated &&*@ Session["ID"] != null)
+                                                    {
+                                                        using (Html.BeginForm("Payment", "Home", new { id = item.ID }))
+                                                        {
+                                                                <input type="submit" onclick="createAlert('Nice Work!','success',true,true,'pageMessages');" value="Order Now" data-toggle="modal1" data-target="#exampleModal1" class="btn btn-outline-warning" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @*<a href="#" class="btn btn-outline-warning">Order Now</a>*@
+                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                                                            Order Now
+                                                        </button>
+
+                                                        <!-- Modal -->
+
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+                                <div class="row m-auto">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.Category.Name == "Cake")
+                                        {
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 py-2 text-left">
+                                            <div class="card background-hidden text-light w-100 shadow-animation border border-secondary">
+                                                <div class="overflow-hidden border-bottom-animation">
+                                                    <img src="~/@item.Images" class="card-img-top image-zoom" alt="@item.NameProduct">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h4 class="text-warning">@item.NameProduct</h4>
+                                                    <h5>@item.UnitPrice $</h5>
+                                                    @if (@*User.Identity.IsAuthenticated &&*@ Session["ID"] != null)
+                                                    {
+                                                        using (Html.BeginForm("Payment", "Home", new { id = item.ID }))
+                                                        {
+                                                                <input type="submit" onclick="createAlert('Nice Work!','success',true,true,'pageMessages');" value="Order Now" data-toggle="modal1" data-target="#exampleModal1" class="btn btn-outline-warning" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @*<a href="#" class="btn btn-outline-warning">Order Now</a>*@
+                                                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                                                            Order Now
+                                                        </button>
+
+                                                        <!-- Modal -->
+
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div>
+                                @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Ban Can Dang Nhap De Su Dung Chuc Nang!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="@Url.Action("Login", "Account")" class="btn btn-warning">Login</a>
+                <a href="@Url.Action("Register", "Account")" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+<script>
+    function createAlert(title, severity, dismissible, autoDismiss, appendToId) {
+        var iconMap = {
+            success: "fa fa-thumbs-up",
+            danger: "fa ffa fa-exclamation-circle"
+        };
+
+        var iconAdded = false;
+
+        var alertClasses = ["alert", "animated", "flipInX"];
+        alertClasses.push("alert-" + severity.toLowerCase());
+
+        if (dismissible) {
+            alertClasses.push("alert-dismissible");
+        }
+
+        var msgIcon = $("<i />", {
+            "class": iconMap[severity] // you need to quote "class" since it's a reserved keyword
+        });
+
+        var msg = $("<div />", {
+            "class": alertClasses.join(" ") // you need to quote "class" since it's a reserved keyword
+        });
+
+        if (title) {
+            var msgTitle = $("<h4 />", {
+                html: title
+            }).appendTo(msg);
+
+            if (!iconAdded) {
+                msgTitle.prepend(msgIcon);
+                iconAdded = true;
+            }
+        }
+
+
+
+        if (dismissible) {
+            var msgClose = $("<span />", {
+                "class": "close", // you need to quote "class" since it's a reserved keyword
+                "data-dismiss": "alert",
+                html: "<i class='fa fa-times-circle'></i>"
+            }).appendTo(msg);
+        }
+
+        $('#' + appendToId).prepend(msg);
+
+        if (autoDismiss) {
+            setTimeout(function () {
+                msg.addClass("flipOutX");
+                setTimeout(function () {
+                    msg.remove();
+                }, 1000);
+            }, 1000);
+        }
+    }
+
+</script>

@@ -1,0 +1,204 @@
+﻿.rounded-sm {
+    border-radius: .2rem !important
+}
+
+.rounded {
+    border-radius: .35rem !important
+}
+
+.rounded-top {
+    border-top-left-radius: .35rem !important;
+    border-top-right-radius: .35rem !important
+}
+
+.rounded-right {
+    border-top-right-radius: .35rem !important;
+    border-bottom-right-radius: .35rem !important
+}
+
+.rounded-bottom {
+    border-bottom-right-radius: .35rem !important;
+    border-bottom-left-radius: .35rem !important
+}
+
+.rounded-left {
+    border-top-left-radius: .35rem !important;
+    border-bottom-left-radius: .35rem !important
+}
+
+.rounded-lg {
+    border-radius: .3rem !important
+}
+
+.rounded-circle {
+    border-radius: 50% !important
+}
+
+.rounded-pill {
+    border-radius: 50rem !important
+}
+
+.rounded-0 {
+    border-radius: 0 !important
+}
+
+.scroll-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 3rem;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    text-align: center;
+    color: #fff;
+    background: rgba(90,92,105,.5);
+    line-height: 46px
+}
+
+    .scroll-to-top:focus, .scroll-to-top:hover {
+        color: #fff
+    }
+
+    .scroll-to-top:hover {
+        background: #5a5c69
+    }
+
+    .scroll-to-top i {
+        font-weight: 800
+    }
+
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: inherit;
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+#transition {
+    transition: width 1.5s;
+    width: 180px;
+    height: 100%;
+}
+
+.text-truncate {
+    width: 380px;
+}
+
+@media only screen and (max-width: 800px) {
+    .show-siderbar {
+        display: inline-table !important;
+        position: absolute !important;
+        top: 87px;
+        transition: all 1.2s ease 1.2s !important;
+    }
+
+    .hide-siderbar {
+        position: absolute !important;
+        top: 87px;
+        left: 180px;
+        transition: all 1.2s ease 1.2s !important;
+    }
+
+    #transition {
+        width: 0;
+        background-color: rgb(0 0 0 / 75%) !important;
+    }
+
+    .admin-main {
+        height: 100%;
+        width: 100% !important;
+        float: none;
+    }
+
+    .navbar-branch-admin {
+        display: -webkit-inline-box !important;
+        margin-left: 0 !important;
+    }
+
+    .nav-item-change {
+        display: none !important;
+    }
+
+    .navbar-search {
+        position: absolute;
+        right: 35px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .bg-admin {
+        background-image: url("https://25.pokemon.com/static/25th_gray-76ff4bda85a3bede65833f8f75ac5fed.gif");
+        object-fit: cover;
+        position: relative;
+        top: 0px;
+        z-index: 1 !important;
+    }
+
+    #transition {
+        transition: width 1.5s;
+        width: 180px !important;
+        height: 100%;
+    }
+
+    .show-siderbar {
+        display: none !important;
+    }
+
+    .hide-siderbar {
+        display: none !important;
+    }
+
+    .navbar-branch-admin {
+        display: none !important;
+        margin-left: 0 !important;
+    }
+
+    .siderbar-item-show {
+        display: none !important;
+    }
+}
+
+.bg-admin {
+    background-image: url("https://25.pokemon.com/static/25th_gray-76ff4bda85a3bede65833f8f75ac5fed.gif");
+    object-fit: cover;
+    position: relative;
+    top: 0px;
+    z-index: 1 !important;
+}
+
+.siderbar {
+    width: 0 px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    text-align: center;
+    /* color: rgb(255, 255, 255); */
+    background-image: initial;
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    line-height: 46px;
+    z-index: 21 !important;
+    background-color: rgba(52, 58, 64, 0.86) !important;
+    padding: 0 px !important;
+}
+
+.show-siderbar {
+    position: relative;
+    left: -12px;
+    z-index: 1200 !important;
+}
+
+.admin-main {
+    height: auto;
+    width: calc(100% - 180px);
+    float: right;
+}

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<restaurant.Models.EF.Order>
+@*@using PagedList.Mvc
+@model PagedList.IPagedList<restaurant.Models.EF.Order>*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<!-- Page Heading -->
+@*<div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-white">Loai San Pham</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm text-white btn-primary shadow-sm">
+            <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+        </a>
+    </div>*@
+
+<!-- Content Row -->
+<div class="row text-white mx-0">
+    <div class="col-10 m-auto" style="background-color: #0000004a;">
+        <div class="card-body px-0">
+            <h2>History Order</h2>
+            @*<div class="d-flex">
+                <div class="ml-auto">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-inline form-group">
+                            <input id="keyword" name="keyword" class="form-control" placeholder="Nhap tu khoa can tim" value="@ViewBag.Keyword" />
+                            <input id="page" name="page" value="1" hidden />
+                            <button type="submit" class="btn btn-primary ml-3">Tim Kiem</button>
+                        </div>
+                    }
+                </div>
+            </div>*@
+        </div>
+        <div class="overflow-auto">
+            <table class="table table-sm table-hover table-striped text-white">
+                <thead>
+                    <tr>
+                        <th>
+                            Ten Nguoi Dung
+                        </th>
+                        <th>
+                            Thoi gian Order
+                        </th>
+                        <th>
+                            Ten San Pham
+                        </th>
+                        <th>
+                            Trang Thai
+                        </th>
+                        <th>
+                            So Luong
+                        </th>
+                        <th>
+                            Discount
+                        </th>
+                        <th>
+                            TotalPrice
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="DataSearching">
+                    @foreach (var item in Model)
+                    {
+                        if (Session["ID"] != null && item.UserID == Session["ID"].ToString())
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.UserName)
+                                </td>
+                                <td>
+                                    @item.OrderDate.Value.ToString("dd/MM/yyyy HH:mm:tt")
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Product.NameProduct)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantily)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Discount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        @*<div>
+            @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+        </div>*@
+    </div>
+</div>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
+
+@*<script>
+        $(document).ready(function () {
+            $("#keyword").click(function () {
+                var SearchValue = $("#keyword").val();
+                var SetData = $("#DataSearching");
+                SetData.html("");
+
+                $.ajax({
+                    type: "post";
+                    url: "Castegories/Index?keyword" + SearchValue,
+                    contentType: "html",
+                    success: function (result)
+                });
+            });
+        });
+    </script>*@

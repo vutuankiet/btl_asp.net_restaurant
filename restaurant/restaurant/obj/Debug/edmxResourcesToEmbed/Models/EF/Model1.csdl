@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_NhaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QL_NhaHangEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BillInfors" EntityType="QL_NhaHangModel.BillInfor" />
+    <EntitySet Name="Bills" EntityType="QL_NhaHangModel.Bill" />
+    <EntitySet Name="Categories" EntityType="QL_NhaHangModel.Category" />
+    <EntitySet Name="Events" EntityType="QL_NhaHangModel.Event" />
+    <EntitySet Name="OrderDestails" EntityType="QL_NhaHangModel.OrderDestail" />
+    <EntitySet Name="Orders" EntityType="QL_NhaHangModel.Order" />
+    <EntitySet Name="Products" EntityType="QL_NhaHangModel.Product" />
+    <EntitySet Name="Roles" EntityType="QL_NhaHangModel.Role" />
+    <EntitySet Name="sysdiagrams" EntityType="QL_NhaHangModel.sysdiagram" />
+    <EntitySet Name="Tables" EntityType="QL_NhaHangModel.Table" />
+    <EntitySet Name="Users" EntityType="QL_NhaHangModel.User" />
+    <AssociationSet Name="FK_BillInfor_Bills" Association="QL_NhaHangModel.FK_BillInfor_Bills">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillInfor" EntitySet="BillInfors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfor_Products" Association="QL_NhaHangModel.FK_BillInfor_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BillInfor" EntitySet="BillInfors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillInfor_Users" Association="QL_NhaHangModel.FK_BillInfor_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="BillInfor" EntitySet="BillInfors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bills_Table" Association="QL_NhaHangModel.FK_Bills_Table">
+      <End Role="Table" EntitySet="Tables" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Categories" Association="QL_NhaHangModel.FK_Products_Categories">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDestails_Orders" Association="QL_NhaHangModel.FK_OrderDestails_Orders">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDestail" EntitySet="OrderDestails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Products" Association="QL_NhaHangModel.FK_Orders_Products">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="QL_NhaHangModel.FK_Orders_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="QL_NhaHangModel.FK_Users_Roles">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BillInfor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BillID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Bill" Relationship="QL_NhaHangModel.FK_BillInfor_Bills" FromRole="BillInfor" ToRole="Bill" />
+    <NavigationProperty Name="Product" Relationship="QL_NhaHangModel.FK_BillInfor_Products" FromRole="BillInfor" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="QL_NhaHangModel.FK_BillInfor_Users" FromRole="BillInfor" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableID" Type="Int32" />
+    <Property Name="DateCheckIn" Type="DateTime" Precision="3" />
+    <Property Name="DateCheckOut" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="TotalPrice" Type="Double" />
+    <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Bills" FromRole="Bill" ToRole="BillInfor" />
+    <NavigationProperty Name="Table" Relationship="QL_NhaHangModel.FK_Bills_Table" FromRole="Bill" ToRole="Table" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="QL_NhaHangModel.FK_Products_Categories" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Images" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FirstDateTime" Type="DateTime" Precision="3" />
+    <Property Name="LastDateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OrderDestail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="Destail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="UnitPrice" Type="Double" />
+    <NavigationProperty Name="Order" Relationship="QL_NhaHangModel.FK_OrderDestails_Orders" FromRole="OrderDestail" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Quantily" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="TotalPrice" Type="Double" />
+    <NavigationProperty Name="OrderDestails" Relationship="QL_NhaHangModel.FK_OrderDestails_Orders" FromRole="Order" ToRole="OrderDestail" />
+    <NavigationProperty Name="Product" Relationship="QL_NhaHangModel.FK_Orders_Products" FromRole="Order" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="QL_NhaHangModel.FK_Orders_Users" FromRole="Order" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="NameProduct" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Images" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="UnitPrice" Type="Double" />
+    <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Products" FromRole="Product" ToRole="BillInfor" />
+    <NavigationProperty Name="Category" Relationship="QL_NhaHangModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="Orders" Relationship="QL_NhaHangModel.FK_Orders_Products" FromRole="Product" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameRoles" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="QL_NhaHangModel.FK_Users_Roles" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DateOrder" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Bills" Relationship="QL_NhaHangModel.FK_Bills_Table" FromRole="Table" ToRole="Bill" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="RolesID" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Users" FromRole="User" ToRole="BillInfor" />
+    <NavigationProperty Name="Orders" Relationship="QL_NhaHangModel.FK_Orders_Users" FromRole="User" ToRole="Order" />
+    <NavigationProperty Name="Role" Relationship="QL_NhaHangModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK_BillInfor_Bills">
+    <End Type="QL_NhaHangModel.Bill" Role="Bill" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.BillInfor" Role="BillInfor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BillInfor">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfor_Products">
+    <End Type="QL_NhaHangModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.BillInfor" Role="BillInfor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BillInfor">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillInfor_Users">
+    <End Type="QL_NhaHangModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.BillInfor" Role="BillInfor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BillInfor">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bills_Table">
+    <End Type="QL_NhaHangModel.Table" Role="Table" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Categories">
+    <End Type="QL_NhaHangModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDestails_Orders">
+    <End Type="QL_NhaHangModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.OrderDestail" Role="OrderDestail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDestail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Products">
+    <End Type="QL_NhaHangModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Type="QL_NhaHangModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Type="QL_NhaHangModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RolesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
