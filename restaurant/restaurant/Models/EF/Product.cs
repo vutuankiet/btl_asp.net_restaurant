@@ -27,8 +27,9 @@ namespace restaurant.Models.EF
         public string Descriptions { get; set; }
         public string Images { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public int Quantily { get; set; }
         public Nullable<double> UnitPrice { get; set; }
+        public Nullable<int> Quantily { get; set; }
+        public Nullable<double> Discount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfor> BillInfors { get; set; }

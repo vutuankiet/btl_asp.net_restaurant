@@ -141,6 +141,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderDestailsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -152,8 +153,10 @@
     </Compile>
     <Compile Include="Models\DAO\BaseDAO.cs" />
     <Compile Include="Models\DAO\CategoryDAO.cs" />
+    <Compile Include="Models\DAO\ContactDAO.cs" />
     <Compile Include="Models\DAO\IBaseDAO.cs" />
     <Compile Include="Models\DAO\ICategoryDAO.cs" />
+    <Compile Include="Models\DAO\IContactDAO.cs" />
     <Compile Include="Models\DAO\IOrderDAO.cs" />
     <Compile Include="Models\DAO\IOrderDestailDAO.cs" />
     <Compile Include="Models\DAO\IPagedListDAO.cs" />
@@ -172,6 +175,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EF\Contact.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EF\Event.cs">
@@ -427,6 +433,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manager.cshtml" />
     <Content Include="Views\Home\HistoryOrder.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Edit.cshtml" />
+    <Content Include="Views\Contacts\Details.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

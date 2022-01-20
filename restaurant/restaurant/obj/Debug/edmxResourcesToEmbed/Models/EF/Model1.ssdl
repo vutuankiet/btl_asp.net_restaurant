@@ -30,6 +30,16 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="20" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="20" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="20" />
+    <Property Name="Messenger" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Events">
     <Key>
       <PropertyRef Name="ID" />
@@ -59,7 +69,7 @@
     <Property Name="UserID" Type="nvarchar" MaxLength="20" />
     <Property Name="ProductID" Type="int" />
     <Property Name="OrderDate" Type="datetime" />
-    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+    <Property Name="Status" Type="bit" />
     <Property Name="Quantily" Type="int" />
     <Property Name="Discount" Type="int" />
     <Property Name="TotalPrice" Type="float" />
@@ -75,6 +85,8 @@
     <Property Name="Images" Type="nvarchar" MaxLength="50" />
     <Property Name="Date" Type="date" />
     <Property Name="UnitPrice" Type="float" />
+    <Property Name="Quantily" Type="int" />
+    <Property Name="Discount" Type="float" />
   </EntityType>
   <EntityType Name="Roles">
     <Key>
@@ -113,6 +125,7 @@
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
     <Property Name="Password" Type="nvarchar" MaxLength="20" />
     <Property Name="Status" Type="bit" />
+    <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK_BillInfor_Bills">
     <End Role="Bills" Type="Self.Bills" Multiplicity="0..1" />
@@ -159,6 +172,18 @@
       </Principal>
       <Dependent Role="Bills">
         <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contacts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Contacts">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -226,6 +251,7 @@
     <EntitySet Name="BillInfor" EntityType="Self.BillInfor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDestails" EntityType="Self.OrderDestails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -249,6 +275,10 @@
     <AssociationSet Name="FK_Bills_Table" Association="Self.FK_Bills_Table">
       <End Role="Table" EntitySet="Table" />
       <End Role="Bills" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contacts_Users" Association="Self.FK_Contacts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Contacts" EntitySet="Contacts" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDestails_Orders" Association="Self.FK_OrderDestails_Orders">
       <End Role="Orders" EntitySet="Orders" />

@@ -108,10 +108,10 @@ namespace restaurant.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,UserName,Password,ConfirmPassword,RolesID,Email,PhoneNumber,Status")] User user)
         {
-            user.Status = false;
+            //user.Status = false;
             if (ModelState.IsValid)
             {
-                user.Status = false;
+                //user.Status = false;
                 await dao.Update(user);
                 return RedirectToAction("Index");
             }

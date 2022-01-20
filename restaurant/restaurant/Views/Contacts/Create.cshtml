@@ -1,0 +1,60 @@
+﻿@model restaurant.Models.EF.Contact
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 mt-5">
+    <div class="card-body">
+        <h4 class="text-left text-success"><span class="font-weight-normal">Create Contact</span></h4>
+        <hr class="text-dark" />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">Email<span class="text-danger">*</span></label>
+            @Html.DropDownList("UserEmail", null, new { htmlAttributes = new { @class = "form-control col-12" } })
+            @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">PhoneNumber<span class="text-danger">*</span></label>
+            @Html.DropDownList("UserPhone", null, new { htmlAttributes = new { @class = "form-control col-12" } })
+            @Html.ValidationMessageFor(model => model.User.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">FirstName<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "vui long khong de trong!", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">LastName<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "FirstName" } })
+            @Html.ValidationMessageFor(model => model.LastName, "vui long khong de trong!", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12">
+            <label class="control-label col-12 pl-0">Messenger<span class="text-danger">*</span></label>
+            <textarea class="form-control col-12" id="Messenger" name="Messenger" maxlength="500" placeholder="Messenger"></textarea>
+            @*@Html.TextAreaFor(model => model.Messenger, new { htmlAttributes = new { @class = "form-control col-12 text-area", @placeholder = "Messenger", @max = "500" } })*@
+            @Html.ValidationMessageFor(model => model.Messenger, "", new { @class = "text-danger col-12" })
+        </div>
+    </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 ml-3 col-md-10 p-0">
+                    <input type="submit" value="Create" class="btn btn-outline-success" />
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-dark" })
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

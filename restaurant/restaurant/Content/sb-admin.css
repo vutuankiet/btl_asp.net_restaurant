@@ -131,7 +131,8 @@ html {
 
 @media only screen and (min-width: 800px) {
     .bg-admin {
-        background-image: url("https://25.pokemon.com/static/25th_gray-76ff4bda85a3bede65833f8f75ac5fed.gif");
+        /*background-image: url("../images/bg-web-admin.png");*/
+        background-color: #122435;
         object-fit: cover;
         position: relative;
         top: 0px;
@@ -163,7 +164,8 @@ html {
 }
 
 .bg-admin {
-    background-image: url("https://25.pokemon.com/static/25th_gray-76ff4bda85a3bede65833f8f75ac5fed.gif");
+    /*background-image: url("../images/bg-web-admin.png");*/
+    background-color: #122435;
     object-fit: cover;
     position: relative;
     top: 0px;

@@ -1,6 +1,6 @@
-﻿@*@model IEnumerable<restaurant.Models.EF.OrderDestail>*@
+﻿@*@model IEnumerable<Restaurant.Models.EF.Category>*@
 @using PagedList.Mvc
-@model PagedList.IPagedList<restaurant.Models.EF.OrderDestail>
+@model PagedList.IPagedList<restaurant.Models.EF.Contact>
 
 @{
     ViewBag.Title = "Index";
@@ -22,7 +22,7 @@
 <div class="row text-white">
     <div class="col-10 m-auto" style="background-color: #0000004a; padding-bottom: 26px;">
         <div class="card-body px-0">
-            <h2>OrderDestails</h2>
+            <h2>Contacts</h2>
             <div class="d-flex">
                 <p>
                     @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-outline-success btn-sm text-white" })
@@ -31,9 +31,9 @@
                     @using (Html.BeginForm())
                     {
                         <div class="form-inline form-group">
-                            <input id="keyword" name="keyword" class="form-control" placeholder="Nhap tu khoa can tim" value="@ViewBag.Keyword" />
+                            <input id="keyword" name="keyword" class="form-control" placeholder="Enter keyword" value="@ViewBag.Keyword" />
                             <input id="page" name="page" value="1" hidden />
-                            <button type="submit" class="btn btn-primary ml-3">Tim Kiem</button>
+                            <button type="submit" class="btn btn-primary ml-3">Search</button>
                         </div>
                     }
                 </div>
@@ -44,28 +44,19 @@
                 <thead>
                     <tr>
                         <th>
-                            Ten Nguoi Dung
+                            First Name
                         </th>
                         <th>
-                            So Dien Thoai
+                            Last Name
                         </th>
                         <th>
-                            Ten San Pham
+                            Email
                         </th>
                         <th>
-                            Loai San Pham
+                            PhoneNumber
                         </th>
                         <th>
-                            OrderDate
-                        </th>
-                        <th>
-                            Discount
-                        </th>
-                        <th>
-                            UnitPrice
-                        </th>
-                        <th>
-                            Status
+                            Messenger
                         </th>
                         <th></th>
                     </tr>
@@ -75,39 +66,26 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Order.User.UserName)
+                                @Html.DisplayFor(modelItem => item.FirstName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Order.User.PhoneNumber)
+                                @Html.DisplayFor(modelItem => item.LastName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Order.Product.NameProduct)
+                                @Html.DisplayFor(modelItem => item.User.Email)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Order.Product.Category.Name)
+                                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Order.OrderDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Order.Discount)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UnitPrice)
-                            </td>
-                            <td>
-                                @*@Html.DisplayFor(modelItem => item.Status)*@
-                                @{
-                                    string classCss = (bool)item.Status ? "btn-success" : "btn-danger";
-                                    string content = (bool)item.Status ? "Paid" : "In process...";
-                                }
-
-                                <button class="btn btn-block btn-sm @classCss border-dark">@content</button>
+                                <div class="d-inline-block text-truncate" style="max-width: 100px;">
+                                    @Html.DisplayFor(modelItem => item.Messenger)
+                                </div>
                             </td>
                             <td class="text-nowrap" width="1px">
-                                @Html.ActionLink("Chinh sua", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
-                                @Html.ActionLink("Chi tiet", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
-                                @Html.ActionLink("Xoa", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
+                                @Html.ActionLink("Detail", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
                             </td>
                         </tr>
                     }

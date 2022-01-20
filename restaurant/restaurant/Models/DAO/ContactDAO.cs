@@ -1,6 +1,5 @@
 ﻿using PagedList;
 using restaurant.Models.EF;
-using restaurant.Models.DAO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,13 +9,13 @@ using System.Web;
 
 namespace restaurant.Models.DAO
 {
-    public class UserDAO : BaseDAO , IUserDAO
+    public class ContactDAO: BaseDAO, IContactDAO
     {
-        public async Task<bool> Add(User entity)
+        public async Task<bool> Add(Contact entity)
         {
             try
             {
-                _context.Users.Add(entity);
+                _context.Contacts.Add(entity);
 
                 await _context.SaveChangesAsync();
             }
@@ -28,13 +27,13 @@ namespace restaurant.Models.DAO
             return true;
         }
 
-        public async Task<bool> Delete(string id)
+        public async Task<bool> Delete(int id)
         {
             var ef = await GetSingleByID(id);
 
             try
             {
-                _context.Users.Remove(ef);
+                _context.Contacts.Remove(ef);
 
                 await _context.SaveChangesAsync();
 
@@ -47,46 +46,43 @@ namespace restaurant.Models.DAO
             }
         }
 
-        public async Task<List<User>> GetAll()
+        public async Task<List<Contact>> GetAll()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Contacts.ToListAsync();
         }
 
-        public async Task<List<User>> GetByKeyword(string keyword)
+        public async Task<List<Contact>> GetByKeyword(string keyword)
         {
-            return await _context.Users
-                .Where(t => t.UserName.Contains(keyword))
+            return await _context.Contacts
+                .Where(t => t.LastName.Contains(keyword))
                 .OrderByDescending(t => t.ID)
                 .ToListAsync();
         }
 
-        public async Task<IPagedList<User>> GetByPaged(int page, int pageSize, string keyword)
+        public async Task<IPagedList<Contact>> GetByPaged(int page, int pageSize, string keyword)
         {
-            var users = await GetByKeyword(keyword);
+            var contacts = await GetByKeyword(keyword);
 
-            return users.ToPagedList(page, pageSize);
+            return contacts.ToPagedList(page, pageSize);
         }
 
-        public async Task<User> GetSingleByID(string id)
+        public async Task<Contact> GetSingleByID(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.Contacts.FindAsync(id);
         }
 
-        public async Task<bool> Update(User entity)
+        public async Task<bool> Update(Contact entity)
         {
             try
             {
-                var ef = await _context.Users.FindAsync(entity.ID);
+                var ef = await _context.Contacts.FindAsync(entity.ID);
 
                 if (ef != null)
                 {
-                    ef.UserName = entity.UserName;
-                    ef.Password = entity.Password;
-                    ef.ConfirmPassword = entity.ConfirmPassword;
-                    ef.RolesID = entity.RolesID;
-                    ef.Email = entity.Email;
-                    ef.PhoneNumber = entity.PhoneNumber;
-                    ef.Status = entity.Status;
+                    ef.FirstName = entity.FirstName;
+                    ef.LastName = entity.LastName;
+                    ef.UserID = entity.UserID;
+                    ef.Messenger = entity.Messenger;
 
                     await _context.SaveChangesAsync();
                 }

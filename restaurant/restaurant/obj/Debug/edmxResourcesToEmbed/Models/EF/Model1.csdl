@@ -48,6 +48,11 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="Contacts" EntityType="QL_NhaHangModel.Contact" />
+    <AssociationSet Name="FK_Contacts_Users" Association="QL_NhaHangModel.FK_Contacts_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Contact" EntitySet="Contacts" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="BillInfor">
     <Key>
@@ -115,7 +120,7 @@
     <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="ProductID" Type="Int32" />
     <Property Name="OrderDate" Type="DateTime" Precision="3" />
-    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
     <Property Name="Quantily" Type="Int32" />
     <Property Name="Discount" Type="Int32" />
     <Property Name="TotalPrice" Type="Double" />
@@ -137,6 +142,8 @@
     <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Products" FromRole="Product" ToRole="BillInfor" />
     <NavigationProperty Name="Category" Relationship="QL_NhaHangModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
     <NavigationProperty Name="Orders" Relationship="QL_NhaHangModel.FK_Orders_Products" FromRole="Product" ToRole="Order" />
+    <Property Name="Quantily" Type="Int32" />
+    <Property Name="Discount" Type="Double" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -180,6 +187,8 @@
     <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Users" FromRole="User" ToRole="BillInfor" />
     <NavigationProperty Name="Orders" Relationship="QL_NhaHangModel.FK_Orders_Users" FromRole="User" ToRole="Order" />
     <NavigationProperty Name="Role" Relationship="QL_NhaHangModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Contacts" Relationship="QL_NhaHangModel.FK_Contacts_Users" FromRole="User" ToRole="Contact" />
   </EntityType>
   <Association Name="FK_BillInfor_Bills">
     <End Type="QL_NhaHangModel.Bill" Role="Bill" Multiplicity="0..1" />
@@ -286,6 +295,29 @@
       </Principal>
       <Dependent Role="User">
         <PropertyRef Name="RolesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Messenger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="QL_NhaHangModel.FK_Contacts_Users" FromRole="Contact" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Contacts_Users">
+    <End Type="QL_NhaHangModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.Contact" Role="Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

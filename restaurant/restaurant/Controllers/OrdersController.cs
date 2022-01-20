@@ -55,7 +55,8 @@ namespace restaurant.Controllers
                 OrderDate = DateTime.Now,
             };
 
-            ViewBag.UserID = new SelectList(await new UserDAO().GetAll(), "ID", "UserName", "RolesID", "Email", "PhoneNumber");
+            ViewBag.Status = GetSelectListStatus(false, false);
+            ViewBag.UserID = new SelectList(await new UserDAO().GetAll(), "ID", "UserName");
             ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct");
             return View(model);
         }
@@ -70,12 +71,14 @@ namespace restaurant.Controllers
         {
             if (ModelState.IsValid)
             {
+                order.Status = false;
                 await dao.Add(order);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(await new RoleDAO().GetAll(), "ID", "UserName", "RolesID", "Email", "PhoneNumber", order.UserID);
-            ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct", order.Product.NameProduct);
+            ViewBag.Status = GetSelectListStatus(false, (bool)order.Status);
+            ViewBag.UserID = new SelectList(await new UserDAO().GetAll(), "ID", "UserName", order.UserID);
+            ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct", order.ProductID);
             return View(order);
         }
 
@@ -93,8 +96,9 @@ namespace restaurant.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.UserID = new SelectList(await new RoleDAO().GetAll(), "ID", "UserName", "RolesID", "Email", "PhoneNumber", order.UserID);
-            ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct", order.Product.NameProduct);
+            ViewBag.Status = GetSelectListStatus(false, (bool)order.Status);
+            ViewBag.UserID = new SelectList(await new UserDAO().GetAll(), "ID", "UserName", order.UserID);
+            ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct", order.ProductID);
             return View(order);
         }
 
@@ -102,7 +106,6 @@ namespace restaurant.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "ID,UserID,ProductID,OrderDate,Status,Quantily,Discount,TotalPrice")] Order order)
         {
@@ -112,10 +115,46 @@ namespace restaurant.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(await new RoleDAO().GetAll(), "ID", "UserName", "RolesID", "Email", "PhoneNumber", order.UserID);
-            ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct", order.Product.NameProduct);
+            ViewBag.Status = GetSelectListStatus(false, (bool)order.Status);
+            ViewBag.UserID = new SelectList(await new UserDAO().GetAll(), "ID", "UserName", order.UserID);
+            ViewBag.ProductID = new SelectList(await new ProductDAO().GetAll(), "ID", "NameProduct", order.ProductID);
             return View(order);
         }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> StatusChange([Bind(Include = "ID,UserID,ProductID,OrderDate,Status,Quantily,Discount,TotalPrice")] Order order,int? id)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        using (QL_NhaHangEntities1 db = new QL_NhaHangEntities1())
+        //        {
+        //            Order order1 = await dao.GetSingleByID((int)id);
+
+        //            var Order = db.Orders.Where(o => o.ID == order.ID).FirstOrDefault();
+                    
+        //                order.UserID = order1.UserID;
+        //                order.ProductID = order1.ProductID;
+        //                order.OrderDate = order1.OrderDate;
+        //                order.Status = true;
+        //                order.Quantily = order1.Quantily;
+        //                order.Discount = order1.Discount;
+        //                order.TotalPrice = order1.TotalPrice;
+
+        //                db.Orders.Add(order);
+        //                db.SaveChanges();
+
+        //                ViewBag.Alert = "Order Successfuly!";
+        //                return RedirectToAction("Index");
+                    
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("", "Wrong Product!");
+        //    }
+        //    return View(order);
+        //}
 
         // GET: Orders/Delete/5
         //[Authorize(Roles = "Admin")]
@@ -150,6 +189,23 @@ namespace restaurant.Controllers
                 //db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private SelectList GetSelectListStatus(bool isSelectedValue, bool val)
+        {
+            List<object> objects = new List<object>()
+            {
+                new {Name = "have shipped", value = true},
+                new {Name = "shipping", value = false},
+            };
+
+            if (isSelectedValue)
+            {
+                return new SelectList(objects, "Value", "Name", val);
+
+            }
+            return new SelectList(objects, "Value", "Name");
+
         }
     }
 }

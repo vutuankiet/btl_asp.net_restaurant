@@ -24,7 +24,7 @@ namespace restaurant.Models.EF
         public string UserID { get; set; }
         public Nullable<int> ProductID { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
-        public string Status { get; set; }
+        public Nullable<bool> Status { get; set; }
         public Nullable<int> Quantily { get; set; }
         public Nullable<int> Discount { get; set; }
         public Nullable<double> TotalPrice { get; set; }

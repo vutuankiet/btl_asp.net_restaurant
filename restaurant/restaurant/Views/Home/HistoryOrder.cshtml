@@ -41,25 +41,28 @@
                 <thead>
                     <tr>
                         <th>
-                            Ten Nguoi Dung
+                            User name
                         </th>
                         <th>
-                            Thoi gian Order
+                            Order date
                         </th>
                         <th>
-                            Ten San Pham
+                            Product's name
                         </th>
                         <th>
-                            Trang Thai
+                            Quantity
                         </th>
                         <th>
-                            So Luong
+                            Product price
                         </th>
                         <th>
                             Discount
                         </th>
                         <th>
-                            TotalPrice
+                            Total payment
+                        </th>
+                        <th>
+                            Status
                         </th>
                     </tr>
                 </thead>
@@ -68,29 +71,38 @@
                     {
                         if (Session["ID"] != null && item.UserID == Session["ID"].ToString())
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.User.UserName)
-                                </td>
-                                <td>
-                                    @item.OrderDate.Value.ToString("dd/MM/yyyy HH:mm:tt")
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Product.NameProduct)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Quantily)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Discount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TotalPrice)
-                                </td>
-                            </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.UserName)
+                        </td>
+                        <td>
+                            @item.OrderDate.Value.ToString("dd/MM/yyyy HH:mm:tt")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.NameProduct)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantily)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.UnitPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.Status)*@
+                            @{
+                                string classCss = (bool)item.Status ? "btn-success" : "btn-danger";
+                                string content = (bool)item.Status ? "have shipped" : "shipping";
+                            }
+
+                            <button class="btn btn-block btn-sm @classCss border-dark">@content</button>
+                        </td>
+                    </tr>
                         }
 
                     }
@@ -100,6 +112,34 @@
         @*<div>
             @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
         </div>*@
+    </div>
+</div>
+<div class="container-fluid w-100 content-padding" style="background-color: #bf9e71 !important;">
+    <div class="row text-center mt-4">
+        <div class="col-xs-12 col-sm-6 col-md-4 ">
+            <p><span class="border border-dark icon-service"><i class="far fa-address-card"></i></span></p>
+            <h3>EASY TO ORDER</h3>
+            @*<p>
+                A comprehensive store for digital and large-scale orders, online booking, POS, online payments,
+                customer data collection, customer retention and marketing solutions.
+            </p>*@
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <p><span class="border border-dark icon-service"><i class="fas fa-shipping-fast"></i></span></p>
+            <h3>FASTEST DELIVERY</h3>
+            @*<p>
+                Quickly connect with the largest shipping companies in Vietnam and choose the fastest and
+                cheapest shipping unit, customers can be assured of no worries.
+            </p>*@
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <p><span class="border border-dark icon-service"><i class="fas fa-coffee"></i></span></p>
+            <h3>QUALITY COFFEE</h3>
+            @*<p>
+                The quality of sweetness in coffee brings mellow and gentle taste, the freshness and perfection
+                of the coffee bean brings satisfaction to customers..
+            </p>*@
+        </div>
     </div>
 </div>
 

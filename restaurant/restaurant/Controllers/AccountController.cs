@@ -85,7 +85,6 @@ namespace restaurant.Controllers
                         Session["RolesID"] = userRegister.RolesID.ToString();
                         Session["UserName"] = userRegister.UserName.ToString();
                         Session["Email"] = userRegister.Email.ToString();
-                        Session["PhoneNumber"] = userRegister.PhoneNumber.ToString();
 
                         //var Ticket = new FormsAuthenticationTicket(user.Email, true, 3000);
                         //string Encrypt = FormsAuthentication.Encrypt(Ticket);
@@ -223,6 +222,7 @@ namespace restaurant.Controllers
                 return HttpNotFound();
             }
 
+            user.Status = false;
             //ViewBag.RolesID = new SelectList(await new RoleDAO().GetAll(), "ID", "NameRoles", user.RolesID);
             //ViewBag.Available = GetSelectListStatus(false, (bool)user.Status);
             return View(user);
@@ -232,23 +232,21 @@ namespace restaurant.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manager([Bind(Include = "ID,UserName,Password,ConfirmPassword,RolesID,Email,PhoneNumber,Status")] User user)
         {
+            user.Status = false;
             if (ModelState.IsValid)
             {
-                user.ID = Session["ID"].ToString();
                 user.RolesID = 1;
                 user.Status = false;
                 await dao.Update(user);
                 ViewBag.SuccessMessage = "Edit Successfull!";
-                return RedirectToAction("Manager","Account");
+                Session["UserName"] = user.UserName.ToString();
+                Session["PhoneNumber"] = user.PhoneNumber.ToString();
+                return RedirectToAction("Manager");
             }
-            else
-            {
-                ModelState.AddModelError("", "Edit Fall!");
-            }
-
             //ViewBag.RolesID = new SelectList(await new RoleDAO().GetAll(), "ID", "NameRoles", user.RolesID);
             //ViewBag.Available = GetSelectListStatus(false, (bool)user.Status);
             return View(user);

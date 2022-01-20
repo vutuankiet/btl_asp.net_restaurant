@@ -12,6 +12,10 @@
     #dashboard {
         color: #f7b924 !important;
     }
+
+    #homeLink {
+        color: #bf9e71 !important;
+    }
 </style>
 @*<div class="container">
     @foreach (var item in Model)
@@ -41,9 +45,9 @@
             <img class="w-100 height-sline" src="~/images/slide4.jpg" alt="image-sline-shop">
             <div class="carousel-caption text-left text-sline text-sline-secon row" style=" height: 100% !important; width: 100% !important; background-color: #00000073; top: 0; padding: 0; left: 0; right: 0; /* bottom: 0; */ margin: 0;"></div>
             <div class="carousel-caption text-sline d-md-block">
-                <h1 class="text-warning font-family">Welcome</h1>
-                <h3 class="text-light">READY TO SERVE YOU</h3>
-                <h5 class="text-light">
+                <h1 class="text-warning font-family tracking-in-expand-fwd">Welcome</h1>
+                <h3 class="text-light tracking-in-expand-fwd">READY TO SERVE YOU</h3>
+                <h5 class="text-light tracking-in-expand-fwd">
                     Innovative and attractive restaurant serving hot, fresh and varied
                     dishes.
                 </h5>
@@ -58,7 +62,7 @@
         <div class="carousel-item">
             <img class="w-100 height-sline" src="~/images/bg2.png" alt="image-sline-shop">
             <div class="carousel-caption text-left text-sline text-sline-secon row" style=" height: 100% !important; width: 100% !important; background-color: #00000073; top: 0; padding: 0; left: 0; right: 0; /* bottom: 0; */ margin: 0;"></div>
-            <div class="carousel-caption text-left text-sline text-sline-secon row">
+            <div class="carousel-caption text-left text-sline text-sline-secon row tracking-in-expand-fwd">
                 <div class="col-12 col-sm-8 col-md-5">
                     <p class="font-family">Full Bodied</p>
                     <h1 class="font-family">BLACK GOLD</h1>
@@ -74,7 +78,7 @@
         <div class="carousel-item">
             <img class="w-100 height-sline" src="~/images/bg3.png" alt="image-sline-shop">
             <div class="carousel-caption text-left text-sline text-sline-secon row" style=" height: 100% !important; width: 100% !important; background-color: #00000073; top: 0; padding: 0; left: 0; right: 0; /* bottom: 0; */ margin: 0;"></div>
-            <div class="carousel-caption text-sline d-md-block">
+            <div class="carousel-caption text-sline d-md-block tracking-in-expand-fwd">
                 <h1 class="text-warning font-family">Welcome</h1>
                 <h3 class="text-lightt">READY TO SERVE YOU</h3>
                 <h5 class="text-light">
@@ -119,7 +123,7 @@
     </div>
     <div class="row m-0 content-background">
         <div class="col-12 col-sm-12 col-md-6 padding-story p-0">
-            <img class="w-100 h-100" src="../images/bg1.png" alt="storyCoffee">
+            <img class="w-100 h-100" src="../images/bg4.png" alt="storyCoffee">
         </div>
         <div class="col-12 col-sm-12 col-md-6 text-justify">
             <h2 class="text-warning font-family">Discover</h2>
@@ -138,7 +142,7 @@
             <p class="text-warning text-right font-family">-Cofee VietNam-</p>
         </div>
     </div>
-    <div class="container-fluid bg-warning w-100 content-padding">
+    <div class="container-fluid w-100 content-padding" style="background-color: #bf9e71 !important;">
         <div class="row text-center mt-4">
             <div class="col-xs-12 col-sm-6 col-md-4 ">
                 <p><span class="border border-dark icon-service"><i class="far fa-address-card"></i></span></p>
@@ -165,7 +169,6 @@
                 </p>
             </div>
         </div>
-        <hr class="my-4">
     </div>
     <div class="row content-background m-0">
         <div class="col-12 col-sm-12 col-md-12 text-center content-background">
@@ -244,7 +247,7 @@
                         and heated before being served to customers.
                     </p>
                     <h5>$5.90</h5>
-                    <a href="#" class="btn btn-outline-warning">Order Now</a>
+                    <a href="@Url.Action("Menu","Home")" class="btn btn-outline-warning">Order Now</a>
                 </div>
             </div>
         </div>
@@ -258,7 +261,7 @@
                         of instant coffee, balanced with the sweet leopard of cream, milk and foam on top.
                     </p>
                     <h5>$7.90</h5>
-                    <a href="#" class="btn btn-outline-warning">Order Now</a>
+                    <a href="@Url.Action("Menu","Home")" class="btn btn-outline-warning">Order Now</a>
                 </div>
             </div>
         </div>
@@ -272,7 +275,7 @@
                         milky foam on the mouth and finally some ice cubes to keep you refreshing summer day.
                     </p>
                     <h5>$6.50</h5>
-                    <a href="#" class="btn btn-outline-warning">Order Now</a>
+                    <a href="@Url.Action("Menu","Home")" class="btn btn-outline-warning">Order Now</a>
                 </div>
             </div>
         </div>
@@ -286,7 +289,7 @@
                         when you take a sip of Cappuccino, the bitter taste of Espresso makes you wake up.
                     </p>
                     <h5>$4.99</h5>
-                    <a href="#" class="btn btn-outline-warning">Order Now</a>
+                    <a href="@Url.Action("Menu","Home")" class="btn btn-outline-warning">Order Now</a>
                 </div>
             </div>
         </div>

@@ -54,6 +54,16 @@
                 @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
             </div>
             <div class="form-group col-12 col-md-6">
+                <label class="control-label">So luong<span class="text-danger">*</span></label>
+                @Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @Min = "1", @Max = "1", @placeholder = "Gia San Pham", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Quantily, "vui long khong de trong!", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-12 col-md-6">
+                <label class="control-label">Giam gia<span class="text-danger">*</span></label>
+                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @Min = "0", @Max = "100", @placeholder = "Gia San Pham", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Discount, "vui long khong de trong!", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-12 col-md-6">
                 <label class="control-label">Gia San Pham<span class="text-danger">*</span></label>
                 @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Gia San Pham", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })

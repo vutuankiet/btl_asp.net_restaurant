@@ -18,30 +18,31 @@
                     <img src="~/images/profile.jpg" class="rounded-circle" width="30" />
                     @Session["UserName"].ToString()
                 </a>
-                <ul class="dropdown-menu drop-menu text-center">
+                <ul class="dropdown-menu drop-menu text-center" style="left: -15px!important">
                     <li>
                         <a href="@Url.Action("Manager", "Account" ,new { id = Session["ID"].ToString() })" class="text-center font-weight-bold text-white dropdown-item border-bottom-animation drop-text" style="text-decoration: none;">
                             <i class="far fa-address-card"></i> Manager
                         </a>
                     </li>
                     <li>
-                        @Html.ActionLink(" History", "HistoryOrder", "Home", routeValues: null, htmlAttributes: new { id = "eventLink", @class = "dropdown-item drop-text font-weight-bold border-bottom-animation fas fa-gift" })
+                        @Html.ActionLink(" History", "HistoryOrder", "Home", routeValues: null, htmlAttributes: new { id = "eventLink", @class = "dropdown-item drop-text font-weight-bold border-bottom-animation fas fa-history" })
+                    </li>
+                    <li class="nav-item p-2" style="text-decoration: none;">
+                        @Html.ActionLink(" Log Off", "Logout", "Account", routeValues: null, htmlAttributes: new { id = "logoutlink", @class = "font-weight-bold border-bottom-animation fas fa-power-off" })
                     </li>
                 </ul>
             </li>
             <!--<li class="nav-item p-2">-->
                 @*@Html.ActionLink("edit", "Manager", "Account", new { id = Session["ID"].ToString() }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })*@
 
-                <!--<a href="@Url.Action("Manager", "Account" ,new { id = Session["ID"].ToString() })" class="text-center font-weight-bold text-white" style="text-decoration: none;">
+                <!--<a href="@*Url.Action("Manager", "Account" ,new { id = Session["ID"].ToString() })" class="text-center font-weight-bold text-white" style="text-decoration: none;">
                     <img src="~/images/profile.jpg" class="rounded-circle" width="30" />
-                    @Session["UserName"].ToString()-->
-                    @*@User.Identity.Name*@
+                    @*Session["UserName"].ToString()-->
+                    @*@User.Identity.Name*
                     @*@(ViewData["FullName"])*@
                 <!--</a>
             </li>-->
-            <li class="nav-item p-2" style="text-decoration: none;">
-                @Html.ActionLink(" Log Off", "Logout", "Account", routeValues: null, htmlAttributes: new { id = "logoutlink", @class = "font-weight-bold border-bottom-animation fas fa-power-off" })
-            </li>
+            
         </ul>
         //}
     }

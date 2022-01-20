@@ -47,6 +47,30 @@ namespace restaurant.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Contact([Bind(Include = "ID,UserID,FirstName,LastName,Messenger")] Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                using (QL_NhaHangEntities1 db = new QL_NhaHangEntities1())
+                {
+                    if (Session["ID"] != null)
+                    {
+                        contact.UserID = Session["ID"].ToString();
+                        db.Contacts.Add(contact);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Alert = "Fall!";
+                    }
+                }
+            }
+
+            return View(contact);
+        }
+
         public async Task<ActionResult> Payment(int? id)
         {
             if (id == null)
@@ -76,6 +100,8 @@ namespace restaurant.Controllers
                         order.UserID = Session["ID"].ToString();
                         order.ProductID = product.ID;
                         order.OrderDate = DateTime.Now;
+                        order.Status = false;
+                        order.Discount = (int?)(product.Discount * 1);
                         order.TotalPrice = order.Quantily * product.UnitPrice * 1;
 
                         db.Orders.Add(order);

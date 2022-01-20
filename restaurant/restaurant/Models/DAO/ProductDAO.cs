@@ -89,6 +89,8 @@ namespace restaurant.Models.DAO
                     ef.Descriptions = entity.Descriptions;
                     ef.Images = entity.Images;
                     ef.Date = entity.Date;
+                    ef.Quantily = entity.Quantily;
+                    ef.Discount = entity.Discount;
                     ef.UnitPrice = entity.UnitPrice;
 
                     await _context.SaveChangesAsync();

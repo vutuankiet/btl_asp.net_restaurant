@@ -35,6 +35,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="20" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Messenger" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="ID" />
@@ -64,7 +74,7 @@
           <Property Name="UserID" Type="nvarchar" MaxLength="20" />
           <Property Name="ProductID" Type="int" />
           <Property Name="OrderDate" Type="datetime" />
-          <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="bit" />
           <Property Name="Quantily" Type="int" />
           <Property Name="Discount" Type="int" />
           <Property Name="TotalPrice" Type="float" />
@@ -80,6 +90,8 @@
           <Property Name="Images" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
           <Property Name="UnitPrice" Type="float" />
+          <Property Name="Quantily" Type="int" />
+          <Property Name="Discount" Type="float" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -118,6 +130,7 @@
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="Password" Type="nvarchar" MaxLength="20" />
           <Property Name="Status" Type="bit" />
+          <Property Name="ConfirmPassword" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK_BillInfor_Bills">
           <End Role="Bills" Type="Self.Bills" Multiplicity="0..1" />
@@ -164,6 +177,18 @@
             </Principal>
             <Dependent Role="Bills">
               <PropertyRef Name="TableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -231,6 +256,7 @@
           <EntitySet Name="BillInfor" EntityType="Self.BillInfor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDestails" EntityType="Self.OrderDestails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -254,6 +280,10 @@
           <AssociationSet Name="FK_Bills_Table" Association="Self.FK_Bills_Table">
             <End Role="Table" EntitySet="Table" />
             <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Users" Association="Self.FK_Contacts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDestails_Orders" Association="Self.FK_OrderDestails_Orders">
             <End Role="Orders" EntitySet="Orders" />
@@ -328,6 +358,11 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="QL_NhaHangModel.Contact" />
+          <AssociationSet Name="FK_Contacts_Users" Association="QL_NhaHangModel.FK_Contacts_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BillInfor">
           <Key>
@@ -395,7 +430,7 @@
           <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ProductID" Type="Int32" />
           <Property Name="OrderDate" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
           <Property Name="Quantily" Type="Int32" />
           <Property Name="Discount" Type="Int32" />
           <Property Name="TotalPrice" Type="Double" />
@@ -417,6 +452,8 @@
           <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Products" FromRole="Product" ToRole="BillInfor" />
           <NavigationProperty Name="Category" Relationship="QL_NhaHangModel.FK_Products_Categories" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Orders" Relationship="QL_NhaHangModel.FK_Orders_Products" FromRole="Product" ToRole="Order" />
+          <Property Name="Quantily" Type="Int32" />
+          <Property Name="Discount" Type="Double" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -460,6 +497,8 @@
           <NavigationProperty Name="BillInfors" Relationship="QL_NhaHangModel.FK_BillInfor_Users" FromRole="User" ToRole="BillInfor" />
           <NavigationProperty Name="Orders" Relationship="QL_NhaHangModel.FK_Orders_Users" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Role" Relationship="QL_NhaHangModel.FK_Users_Roles" FromRole="User" ToRole="Role" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contacts" Relationship="QL_NhaHangModel.FK_Contacts_Users" FromRole="User" ToRole="Contact" />
         </EntityType>
         <Association Name="FK_BillInfor_Bills">
           <End Type="QL_NhaHangModel.Bill" Role="Bill" Multiplicity="0..1" />
@@ -569,6 +608,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Messenger" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="QL_NhaHangModel.FK_Contacts_Users" FromRole="Contact" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Contacts_Users">
+          <End Type="QL_NhaHangModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="QL_NhaHangModel.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -648,6 +710,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="QL_NhaHangModel.Product">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Quantily" ColumnName="Quantily" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Images" ColumnName="Images" />
@@ -690,12 +754,24 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QL_NhaHangModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="QL_NhaHangModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Messenger" ColumnName="Messenger" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

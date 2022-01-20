@@ -84,4 +84,3 @@ D:\C#\C#Winform\BTL\btl_asp.net_restaurant\restaurant\restaurant\obj\Debug\resta
 D:\C#\C#Winform\BTL\btl_asp.net_restaurant\restaurant\restaurant\obj\Debug\restaurant.csproj.CopyComplete
 D:\C#\C#Winform\BTL\btl_asp.net_restaurant\restaurant\restaurant\obj\Debug\restaurant.dll
 D:\C#\C#Winform\BTL\btl_asp.net_restaurant\restaurant\restaurant\obj\Debug\restaurant.pdb
-D:\C#\C#Winform\BTL\btl_asp.net_restaurant\restaurant\restaurant\obj\Debug\restaurant.csproj.AssemblyReference.cache

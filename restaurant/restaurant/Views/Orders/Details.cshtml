@@ -10,7 +10,20 @@
         <h4 class="text-left text-success"><span class="font-weight-normal">Chi Tiet Order</span></h4>
         <hr class="text-dark" />
         <div class="row">
-            <div class="form-group col-12">
+            <h5 class="col-12">UserName: <span class="font-weight-normal">@Model.User.UserName</span></h5>
+            <h5 class="col-12">Email: <span class="font-weight-normal">@Model.User.Email</span></h5>
+            <h5 class="col-12">PhoneNumber: <span class="font-weight-normal">@Model.User.PhoneNumber</span></h5>
+            <h5 class="col-12">ProductName: <span class="font-weight-normal">@Model.Product.NameProduct</span></h5>
+            <h5 class="col-12">OrderDate: <span class="font-weight-normal">@Model.OrderDate</span></h5>
+            <h5 class="col-12">UnitPrice: <span class="font-weight-normal">@Model.Product.UnitPrice</span></h5>
+            <h5 class="col-12">Quantily: <span class="font-weight-normal">@Model.Quantily</span></h5>
+            <h5 class="col-12">TotalPrice: <span class="font-weight-normal">@Model.TotalPrice</span></h5>
+            @{
+                string classCss = (bool)Model.Status ? "btn-success" : "btn-danger";
+                string content = (bool)Model.Status ? "have shipped" : "shipping";
+            }
+            <h5 class="col-12">Status: <span class="text-danger font-weight-normal">@content</span></h5>
+            @*<div class="form-group col-12">
                 <label class="control-label">Ten Nguoi Dung<span class="text-danger">*</span></label>
                 @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control col-12", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.User.UserName, "vui long khong de trong!", new { @class = "text-danger" })
@@ -22,7 +35,6 @@
             </div>
             <div class="form-group col-12 col-md-6">
                 <label class="control-label">OrderDate<span class="text-danger">*</span></label>
-                @*@Html.EditorFor(model => model.OrderDate.Value.ToString("dd-MM-yyyy"), new { htmlAttributes = new { @class = "form-control col-12", Type="date" } })*@
                 <input type="datetime" id="OrderDate" name="OrderDate" class="form-control" readonly="readonly" value="@Model.OrderDate.Value.ToString("dd/MM/yyyy HH:mm:tt")" />
                 @Html.ValidationMessageFor(model => model.OrderDate, "vui long khong de trong!", new { @class = "text-danger" })
             </div>
@@ -45,12 +57,12 @@
                 <label class="control-label">TotalPrice<span class="text-danger">*</span></label>
                 @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @readonly = "readonly", @placeholder = "status" } })
                 @Html.ValidationMessageFor(model => model.TotalPrice, "vui long khong de trong!", new { @class = "text-danger" })
-            </div>
+            </div>*@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 ml-3 col-md-10 p-0">
-                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-outline-warning" })
+            <div class="col-md-offset-2 ml-0 col-md-10 pl-0">
+                @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-outline-warning" })*@
                 @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-dark" })
             </div>
         </div>

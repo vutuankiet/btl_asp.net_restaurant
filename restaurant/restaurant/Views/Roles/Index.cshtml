@@ -19,8 +19,8 @@
     </div>*@
 
 <!-- Content Row -->
-<div class="row text-white mt-5">
-    <div class="col-10 m-auto" style="background-color: #0000004a;">
+<div class="row text-white">
+    <div class="col-10 m-auto" style="background-color: #0000004a; padding-bottom: 26px;">
         <div class="card-body px-0">
             <h2>Roles</h2>
             <div class="d-flex">
@@ -31,9 +31,9 @@
                     @using (Html.BeginForm())
                     {
                         <div class="form-inline form-group">
-                            <input id="keyword" name="keyword" class="form-control" placeholder="Nhap tu khoa can tim" value="@ViewBag.Keyword" />
+                            <input id="keyword" name="keyword" class="form-control" placeholder="Enter keyword" value="@ViewBag.Keyword" />
                             <input id="page" name="page" value="1" hidden />
-                            <button type="submit" class="btn btn-primary ml-3">Tim Kiem</button>
+                            <button type="submit" class="btn btn-primary ml-3">Search</button>
                         </div>
                     }
                 </div>
@@ -44,7 +44,7 @@
                 <thead>
                     <tr>
                         <th>
-                            Ten Role
+                            Role name
                         </th>
                         <th></th>
                     </tr>
@@ -57,9 +57,9 @@
                                 @Html.DisplayFor(modelItem => item.NameRoles)
                             </td>
                             <td class="text-nowrap" width="1px">
-                                @Html.ActionLink("Chinh sua", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
-                                @Html.ActionLink("Chi tiet", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
-                                @Html.ActionLink("Xoa", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
+                                @Html.ActionLink("Detail", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
                             </td>
                         </tr>
                     }

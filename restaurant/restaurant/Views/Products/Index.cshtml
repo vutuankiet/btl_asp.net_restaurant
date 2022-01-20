@@ -22,7 +22,7 @@
 <div class="row text-white">
     <div class="col-10 m-auto" style="background-color: #0000004a; padding-bottom: 26px;">
         <div class="card-body px-0">
-            <h2>Mat hang</h2>
+            <h2>Products</h2>
             <div class="d-flex">
                 <p>
                     @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-outline-success btn-sm text-white" })
@@ -31,9 +31,9 @@
                     @using (Html.BeginForm())
                     {
                         <div class="form-inline form-group">
-                            <input id="keyword" name="keyword" class="form-control" placeholder="Nhap tu khoa can tim" value="@ViewBag.Keyword" />
+                            <input id="keyword" name="keyword" class="form-control" placeholder="Enter keyword" value="@ViewBag.Keyword" />
                             <input id="page" name="page" value="1" hidden />
-                            <button type="submit" class="btn btn-primary ml-3">Tim Kiem</button>
+                            <button type="submit" class="btn btn-primary ml-3">Search</button>
                         </div>
                     }
                 </div>
@@ -44,19 +44,25 @@
                 <thead>
                     <tr>
                         <th>
-                            Ten San Pham
+                            Product's name
                         </th>
                         <th>
-                            Loai San Pham
+                            Product type
                         </th>
                         <th>
-                            Anh San Pham
+                            Product image
                         </th>
                         <th>
-                            Ngay Nhap
+                            Date Added
                         </th>
                         <th>
-                            Gia Ca
+                            Quantity
+                        </th>
+                        <th>
+                            Discount
+                        </th>
+                        <th>
+                            Product price
                         </th>
                         <th></th>
                     </tr>
@@ -103,12 +109,18 @@
                                 @item.Date.Value.ToString("dd-MM-yyyy")
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Quantily)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Discount)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.UnitPrice)
                             </td>
                             <td class="text-nowrap" width="1px">
-                                @Html.ActionLink("Chinh sua", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
-                                @Html.ActionLink("Chi tiet", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
-                                @Html.ActionLink("Xoa", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
+                                @Html.ActionLink("Detail", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
                             </td>
                         </tr>
                     }

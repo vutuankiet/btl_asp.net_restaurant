@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="87eb1cb231064d9fb74944b7ddaa6bef" Name="Diagram1" ZoomLevel="98">
+      <Diagram DiagramId="87eb1cb231064d9fb74944b7ddaa6bef" Name="Diagram1" ZoomLevel="109">
         <EntityTypeShape EntityType="QL_NhaHangModel.BillInfor" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="QL_NhaHangModel.Bill" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="QL_NhaHangModel.Category" Width="1.5" PointX="0.75" PointY="8.875" />
@@ -25,6 +25,8 @@
         <AssociationConnector Association="QL_NhaHangModel.FK_Orders_Products" />
         <AssociationConnector Association="QL_NhaHangModel.FK_Orders_Users" />
         <AssociationConnector Association="QL_NhaHangModel.FK_Users_Roles" />
+        <EntityTypeShape EntityType="QL_NhaHangModel.Contact" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="QL_NhaHangModel.FK_Contacts_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

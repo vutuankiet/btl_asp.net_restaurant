@@ -48,7 +48,7 @@
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password" } })
                     @Html.ValidationMessageFor(model => model.Password, "vui long khong de trong!", new { @class = "text-danger" })
                 </div>
-                
+
                 <div class="form-group col-12 col-md-6">
                     <label class="control-label">ConfirmPassword<span class="text-danger">*</span></label>
                     @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password" } })
@@ -59,6 +59,16 @@
                     <label class="control-label">PhoneNumber<span class="text-danger">*</span></label>
                     @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PhoneNumber", @Type = "tel", @pattern = "[0-9]{10}" } })
                     @Html.ValidationMessageFor(model => model.PhoneNumber, "vui long khong de trong!", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-12 col-md-6">
+                    <label class="control-label">Trang Thai<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            @Html.DropDownList("Status", ViewBag.Status as SelectList, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
 

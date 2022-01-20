@@ -11,8 +11,7 @@ namespace restaurant.Models.EF
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +19,7 @@ namespace restaurant.Models.EF
         {
             this.BillInfors = new HashSet<BillInfor>();
             this.Orders = new HashSet<Order>();
+            this.Contacts = new HashSet<Contact>();
         }
     
         public string ID { get; set; }
@@ -28,15 +28,15 @@ namespace restaurant.Models.EF
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Password { get; set; }
-
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
         public Nullable<bool> Status { get; set; }
+        public string ConfirmPassword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfor> BillInfors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Contact> Contacts { get; set; }
     }
 }

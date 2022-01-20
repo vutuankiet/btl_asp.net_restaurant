@@ -9,7 +9,7 @@
 }
 <style>
     #menuLink {
-        color: #f7b924 !important;
+        color: #bf9e71 !important;
     }
 
     #pageMessages {
@@ -56,9 +56,9 @@
                                 @using (Html.BeginForm())
                                 {
                                     <div class="form-inline form-group m-0" action="#">
-                                        <input class="form-control mr-sm-2 bg-dark text-white search-animation" type="text" value="@ViewBag.Keyword" id="keyword" name="keyword" placeholder="Search.." aria-label="Search">
+                                        <input class="form-control mr-sm-2 bg-dark text-white search-animation" type="text" value="@ViewBag.Keyword" id="keyword" name="keyword" placeholder="Enter keyword" aria-label="Search">
                                         <input id="page" name="page" value="1" hidden />
-                                        <button type="submit" class="btn btn-primary ml-3" hidden>Tim Kiem</button>
+                                        <button type="submit" class="btn btn-primary ml-3" hidden>Search</button>
                                     </div>
                                 }
                             </li>
@@ -220,7 +220,7 @@
                                     }
                                 </div>
                             </div>
-                            <div>
+                            <div class="mx-auto">
                                 @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
                             </div>
                         </div>

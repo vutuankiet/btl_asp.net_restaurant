@@ -61,7 +61,7 @@ namespace restaurant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,CategoryID,NameProduct,Descriptions,Images,Date,UnitPrice")] Product product, HttpPostedFileBase file)
+        public async Task<ActionResult> Create([Bind(Include = "ID,CategoryID,NameProduct,Descriptions,Images,Date,Discount,Quantily,UnitPrice")] Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace restaurant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,CategoryID,NameProduct,Descriptions,Images,Date,UnitPrice")] Product product, HttpPostedFileBase file)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,CategoryID,NameProduct,Descriptions,Images,Date,Discount,Quantily,UnitPrice")] Product product, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {

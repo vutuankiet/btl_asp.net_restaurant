@@ -1,9 +1,12 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
+
+@model restaurant.Models.EF.Contact
+
 <style>
     #contactLink {
-        color: #f7b924 !important;
+        color: #bf9e71 !important;
     }
 </style>
 
@@ -15,7 +18,7 @@
                 tabindex="0"></iframe>
     </div>
     <div class="col-12 col-sm-12 col-md-6 p-2 my-auto mx-auto">
-        <form class="was-validated w-100" action="#" method="post">
+        @*<form class="was-validated w-100" action="#" method="post">
             <div class="form-row">
                 <h2 class="text-light col-12 text-center">Contact</h2>
                 <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
@@ -64,7 +67,54 @@
                 <div class="form-group col-12 col-sm-12">
                     <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
                 </div>
+            </div>*@
+        @*</form>*@
+
+
+        @if (Session["ID"] != null)
+        {
+            using (Html.BeginForm("Contact", "Home"))
+            {
+        <div class="row">
+            <h5 class="text-white col-12 ml-0 pl-0">Contact Us</h5>
+            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                <label class=" text-white">Email<span class="text-danger">*</span></label>
+                <input class="form-control col-12" readonly value="@Session["Email"]" />
+                @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
             </div>
-        </form>
+            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                <label class=" text-white">PhoneNumber<span class="text-danger">*</span></label>
+                <input class="form-control col-12" readonly value="@Session["PhoneNumber"]" />
+                @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
+            </div>
+            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                <label class=" text-white">FirstName<span class="text-danger">*</span></label>
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                <label class=" text-white">LastName<span class="text-danger">*</span></label>
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 pl-0">
+                <label class=" text-white">Messenger<span class="text-danger">*</span></label>
+                <textarea class="form-control col-12" id="Messenger" name="Messenger" maxlength="500" placeholder="Messenger" required></textarea>
+                @*@Html.TextAreaFor(model => model.Messenger, new { htmlAttributes = new { @class = "form-control col-12 text-area", @placeholder = "Messenger", @max = "500" } })*@
+                @Html.ValidationMessageFor(model => model.Messenger, "", new { @class = "text-danger col-12" })
+            </div>
+            <div class="form-group col-12 col-sm-12">
+                <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
+            </div>
+        </div>
+
+            }
+        }
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
