@@ -48,6 +48,9 @@ namespace restaurant
 
             bundles.Add(new ScriptBundle("~/Error/js").Include(
                       "~/Scripts/Error.js"));
+
+            bundles.Add(new StyleBundle("~/GamePlay/css").Include(
+                      "~/Content/GamePlay.css"));
         }
     }
 }

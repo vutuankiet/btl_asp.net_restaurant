@@ -7,7 +7,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<style>
+    #historyLink {
+        color: #bf9e71 !important;
+    }
+</style>
 
 
 <!-- Page Heading -->
@@ -71,7 +75,7 @@
                     {
                         if (Session["ID"] != null && item.UserID == Session["ID"].ToString())
                         {
-                    <tr>
+                    <tr class="table-text">
                         <td>
                             @Html.DisplayFor(modelItem => item.User.UserName)
                         </td>

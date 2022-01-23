@@ -14,7 +14,7 @@
 <div class="bg-login">
     <div class="container text-white">
         <div class="row justify-content-center">
-            <div class="col-md-4 bg-form py-2">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 bg-form py-2 mx-auto px-auto">
                 <section id="loginForm">
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
@@ -22,40 +22,30 @@
                         <h4>Use a local account to Register.</h4>
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @Required = "required" } })
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="form-group col-12">
+                            <label class="control-label">User name<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User name", @Required = "required" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @required = "Required", @Type = "email" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="form-group col-12">
+                            <label class="control-label">Email<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email", @required = "Required", @Type = "email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @required = "Required", @Type = "tel", @pattern = "[0-9]{10}" } })
-                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="form-group col-12">
+                            <label class="control-label">Phone number<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "0987656789", @required = "Required", @Type = "tel", @pattern = "[0-9]{10}" } })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "Required", @Type = "password" } })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="form-group col-12">
+                            <label class="control-label">PassWord<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @required = "Required", @Type = "password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @Required = "required", @Type = "password" } })
-                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                            </div>
+                        <div class="form-group col-12">
+                            <label class="control-label">ConfirmPassword<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @Required = "required", @Type = "password" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-12">
@@ -70,16 +60,16 @@
                                 <input type="submit" value="Register" class="btn btn-outline-secondary" />
                             </div>
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-md-offset-2 col-12">
                                 <label class="text-success">@ViewBag.SuccessMessage</label>
                             </div>
-                        </div>
-                        <div class="col-12 col-md-12 col-sm-12">
+                        </div>*@
+                        @*<div class="col-12 col-md-12 col-sm-12">
                             <p>
                                 @Html.ActionLink("Forgot your password?", "ForgotPassword")
                             </p>
-                        </div>
+                        </div>*@
                         <div class="col-12 col-md-12 col-sm-12">
                             <p>
                                 @Html.ActionLink("Already have an account, Login", "Login", "Account")

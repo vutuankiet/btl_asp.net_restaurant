@@ -55,7 +55,7 @@ namespace restaurant.Models.DAO
         public async Task<List<Order>> GetByKeyword(string keyword)
         {
             return await _context.Orders
-                .Where(t => t.UserID.Contains(keyword))
+                .Where(t => t.User.UserName.Contains(keyword))
                 .OrderByDescending(t => t.ID)
                 .ToListAsync();
         }
@@ -80,13 +80,13 @@ namespace restaurant.Models.DAO
 
                 if (ef != null)
                 {
-                    ef.UserID = entity.UserID;
-                    ef.ProductID = entity.ProductID;
-                    ef.OrderDate = entity.OrderDate;
+                    //ef.UserID = entity.UserID;
+                    //ef.ProductID = entity.ProductID;
+                    //ef.OrderDate = entity.OrderDate;
                     ef.Status = entity.Status;
-                    ef.Quantily = entity.Quantily;
-                    ef.Discount = entity.Discount;
-                    ef.TotalPrice = entity.TotalPrice;
+                    //ef.Quantily = entity.Quantily;
+                    //ef.Discount = entity.Discount;
+                    //ef.TotalPrice = entity.TotalPrice;
 
                     await _context.SaveChangesAsync();
                 }

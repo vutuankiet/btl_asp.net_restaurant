@@ -7,7 +7,11 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
+<style>
+    #productslink {
+        color: #bf9e71 !important;
+    }
+</style>
 
 
 <!-- Page Heading -->
@@ -20,7 +24,7 @@
 
 <!-- Content Row -->
 <div class="row text-white">
-    <div class="col-10 m-auto" style="background-color: #0000004a; padding-bottom: 26px;">
+    <div class="col-10 mx-auto mb-5" style="background-color: #0000004a; padding-bottom: 26px;">
         <div class="card-body px-0">
             <h2>Products</h2>
             <div class="d-flex">
@@ -33,7 +37,7 @@
                         <div class="form-inline form-group">
                             <input id="keyword" name="keyword" class="form-control" placeholder="Enter keyword" value="@ViewBag.Keyword" />
                             <input id="page" name="page" value="1" hidden />
-                            <button type="submit" class="btn btn-primary ml-3">Search</button>
+                            <button type="submit" class="btn btn-primary ml-0"><i class="fas fa-search"></i></button>
                         </div>
                     }
                 </div>
@@ -59,10 +63,10 @@
                             Quantity
                         </th>
                         <th>
-                            Discount
+                            Discount (%)
                         </th>
                         <th>
-                            Product price
+                            Product price ($)
                         </th>
                         <th></th>
                     </tr>
@@ -70,7 +74,7 @@
                 <tbody id="DataSearching">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr class="table-text">
                             <td>
                                 @Html.DisplayFor(modelItem => item.NameProduct)
                             </td>
@@ -89,7 +93,7 @@
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalCenterTitle">Image</h5>
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">@item.NameProduct</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -106,7 +110,7 @@
                                 @*@Html.DisplayFor(modelItem => item.Images)*@
                             </td>
                             <td>
-                                @item.Date.Value.ToString("dd-MM-yyyy")
+                                @item.Date.Value.ToString("dd/MM/yyyy")
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Quantily)

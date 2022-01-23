@@ -5,24 +5,33 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 mt-5">
+<style>
+    #orderslink {
+        color: #bf9e71 !important;
+    }
+</style>
+
+<div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
     <div class="card-body">
-        <h4 class="text-left text-success"><span class="font-weight-normal">Chi Tiet Order</span></h4>
+        <h4 class="text-left text-info"><span class="font-weight-normal">Destail Order</span></h4>
         <hr class="text-dark" />
         <div class="row">
             <h5 class="col-12">UserName: <span class="font-weight-normal">@Model.User.UserName</span></h5>
             <h5 class="col-12">Email: <span class="font-weight-normal">@Model.User.Email</span></h5>
             <h5 class="col-12">PhoneNumber: <span class="font-weight-normal">@Model.User.PhoneNumber</span></h5>
+            <hr class="my-2 col-12"/>
             <h5 class="col-12">ProductName: <span class="font-weight-normal">@Model.Product.NameProduct</span></h5>
             <h5 class="col-12">OrderDate: <span class="font-weight-normal">@Model.OrderDate</span></h5>
-            <h5 class="col-12">UnitPrice: <span class="font-weight-normal">@Model.Product.UnitPrice</span></h5>
+            <h5 class="col-12">UnitPrice: <span class="text-warning">$</span> <span class="font-weight-normal">@Model.Product.UnitPrice</span></h5>
             <h5 class="col-12">Quantily: <span class="font-weight-normal">@Model.Quantily</span></h5>
-            <h5 class="col-12">TotalPrice: <span class="font-weight-normal">@Model.TotalPrice</span></h5>
+            <h5 class="col-12">Discount: <span class="font-weight-normal">@Model.Product.Discount</span> <span class="text-info">%</span></h5>
+            <h5 class="col-12">TotalPrice: <span class="text-warning">$</span> <span class="font-weight-normal">@Model.TotalPrice</span></h5>
+            <hr class="my-2 col-12" />
             @{
-                string classCss = (bool)Model.Status ? "btn-success" : "btn-danger";
+                string classCss = (bool)Model.Status ? "text-success" : "text-danger";
                 string content = (bool)Model.Status ? "have shipped" : "shipping";
             }
-            <h5 class="col-12">Status: <span class="text-danger font-weight-normal">@content</span></h5>
+            <h5 class="col-12">Status: <span class="@classCss font-weight-normal">@content</span></h5>
             @*<div class="form-group col-12">
                 <label class="control-label">Ten Nguoi Dung<span class="text-danger">*</span></label>
                 @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control col-12", @readonly = "readonly" } })

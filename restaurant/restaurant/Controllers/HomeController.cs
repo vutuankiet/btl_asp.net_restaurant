@@ -108,11 +108,11 @@ namespace restaurant.Controllers
                         db.SaveChanges();
 
                         ViewBag.Alert = "Order Successfuly!";
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Menu", "Home");
                     }
                     else
                     {
-                        ViewBag.Alert = "Fall!";
+                        ViewBag.Alert = "Fail!";
                     }
                 }
             }

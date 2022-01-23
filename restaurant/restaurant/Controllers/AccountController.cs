@@ -71,20 +71,31 @@ namespace restaurant.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.ID = SetBId();
-                user.RolesID = 1;
-                user.Status = false;
-                await dao.Add(user);
-                ViewBag.SuccessMessage = "Registration Successfull!";//??để thông báo thôi thanhf coong m redirect ve index ma
+                
+                //??để thông báo thôi thanhf coong m redirect ve index ma
                 using (QL_NhaHangEntities1 db = new QL_NhaHangEntities1())
                 {
                     var userRegister = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
-                    if (userRegister != null)
+                    if(dao.CheckEmail(user.Email))
                     {
-                        Session["ID"] = userRegister.ID.ToString();
-                        Session["RolesID"] = userRegister.RolesID.ToString();
-                        Session["UserName"] = userRegister.UserName.ToString();
-                        Session["Email"] = userRegister.Email.ToString();
+                        ModelState.AddModelError("", "Email already exists!");
+                    }
+                    else
+                    {
+                        user.ID = SetBId();
+                        user.RolesID = 1;
+                        user.Status = true;
+                        await dao.Add(user);
+                        ViewBag.SuccessMessage = "Registration Successfull!";
+                        var userregisterlog = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
+                        if(userregisterlog != null)
+                        {
+                            Session["ID"] = userregisterlog.ID.ToString();
+                            Session["RolesID"] = userregisterlog.RolesID.ToString();
+                            Session["UserName"] = userregisterlog.UserName.ToString();
+                            Session["Email"] = userregisterlog.Email.ToString();
+                        }
+                        
 
                         //var Ticket = new FormsAuthenticationTicket(user.Email, true, 3000);
                         //string Encrypt = FormsAuthentication.Encrypt(Ticket);
@@ -103,7 +114,7 @@ namespace restaurant.Controllers
 
                         //identity.AddClaim(new Claim("DateCreated", user.DateCreated.ToString("MM/dd/yyyy")));
                         //AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-                        if (userRegister.RolesID == 2)
+                        if (userregisterlog.RolesID == 2)
                         {
                             return RedirectToAction("Index", "Admin");
                         }
@@ -112,14 +123,11 @@ namespace restaurant.Controllers
                             return RedirectToAction("Index", "Home");
                         }
                     }
-                    else
-                    {
-                        ModelState.AddModelError("", "Account already exists!");
-                    }
+                    
                 }
                 return View();
             }
-            
+            ModelState.AddModelError("", "Account already exists!");
             ViewBag.ID = SetBId();//??in id tren view ta co thay m dung dau t xoa bo r:)  chay lai thu xemno invalid cho nao
             //ViewBag.RolesID = new SelectList(await new RoleDAO().GetAll(), "ID", "NameRoles", user.RolesID);
             //ViewBag.Available = GetSelectListStatus(false, (bool)user.Status);
@@ -158,11 +166,7 @@ namespace restaurant.Controllers
                 var userlogin = db.Users.Where(u => u.Email == user.Email && u.Password == user.Password).FirstOrDefault();
                 if (userlogin != null)
                 {
-                    Session["ID"] = userlogin.ID.ToString();
-                    Session["RolesID"] = userlogin.RolesID.ToString();
-                    Session["UserName"] = userlogin.UserName.ToString();
-                    Session["Email"] = userlogin.Email.ToString();
-                    Session["PhoneNumber"] = userlogin.PhoneNumber.ToString();
+                    
 
                     //var Ticket = new FormsAuthenticationTicket(user.Email, true, 3000);
                     //string Encrypt = FormsAuthentication.Encrypt(Ticket);
@@ -181,14 +185,28 @@ namespace restaurant.Controllers
 
                     //identity.AddClaim(new Claim("DateCreated", user.DateCreated.ToString("MM/dd/yyyy")));
                     //AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
-                    if (userlogin.RolesID == 2)
+                    
+                    if (userlogin.Status == true)
                     {
-                        return RedirectToAction("Index", "Admin");
+                        Session["ID"] = userlogin.ID.ToString();
+                        Session["RolesID"] = userlogin.RolesID.ToString();
+                        Session["UserName"] = userlogin.UserName.ToString();
+                        Session["Email"] = userlogin.Email.ToString();
+                        Session["PhoneNumber"] = userlogin.PhoneNumber.ToString();
+                        if (userlogin.RolesID == 2)
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
-                    else
+                    if (userlogin.Status == false)
                     {
-                        return RedirectToAction("Index", "Home");
+                        ViewBag.LockAlert = "Account has been locked";
                     }
+
                 }
                 else
                 {
@@ -222,7 +240,7 @@ namespace restaurant.Controllers
                 return HttpNotFound();
             }
 
-            user.Status = false;
+            user.Status = true;
             //ViewBag.RolesID = new SelectList(await new RoleDAO().GetAll(), "ID", "NameRoles", user.RolesID);
             //ViewBag.Available = GetSelectListStatus(false, (bool)user.Status);
             return View(user);
@@ -236,16 +254,15 @@ namespace restaurant.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Manager([Bind(Include = "ID,UserName,Password,ConfirmPassword,RolesID,Email,PhoneNumber,Status")] User user)
         {
-            user.Status = false;
+            user.Status = true;
             if (ModelState.IsValid)
             {
-                user.RolesID = 1;
-                user.Status = false;
-                await dao.Update(user);
-                ViewBag.SuccessMessage = "Edit Successfull!";
-                Session["UserName"] = user.UserName.ToString();
-                Session["PhoneNumber"] = user.PhoneNumber.ToString();
-                return RedirectToAction("Manager");
+                    user.Status = true;
+                    await dao.Update(user);
+                    ViewBag.SuccessMessage = "Edit Successfull!";
+                    Session["UserName"] = user.UserName.ToString();
+                    Session["PhoneNumber"] = user.PhoneNumber.ToString();
+                    return RedirectToAction("Manager");
             }
             //ViewBag.RolesID = new SelectList(await new RoleDAO().GetAll(), "ID", "NameRoles", user.RolesID);
             //ViewBag.Available = GetSelectListStatus(false, (bool)user.Status);

@@ -71,7 +71,7 @@ namespace restaurant.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.Status = false;
+                user.Status = true;
                 await dao.Add(user);
                 return RedirectToAction("Index");
             }
@@ -159,8 +159,8 @@ namespace restaurant.Controllers
         {
             List<object> objects = new List<object>()
             {
-                new {Name = "On", value = true},
-                new {Name = "Off", value = false},
+                new {Name = "Activate", value = true},
+                new {Name = "Lock", value = false},
             };
 
             if (isSelectedValue)
@@ -177,5 +177,7 @@ namespace restaurant.Controllers
         //    var dao = new RoleDAO();
         //    ViewBag.RolesID = new SelectList((System.Collections.IEnumerable)dao.GetAll(), "ID", "NameRoles", selectedId);
         //}
+
+        
     }
 }

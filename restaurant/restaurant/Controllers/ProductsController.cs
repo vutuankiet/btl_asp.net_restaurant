@@ -66,13 +66,33 @@ namespace restaurant.Controllers
             if (ModelState.IsValid)
             {
                 // Create avatar on server
-                var filename = Path.GetFileName(product.Images);
-                var extension = Path.GetExtension(product.Images);
-                filename = filename + "-" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-tt") + extension + ".png";
-                var path = Path.Combine(Server.MapPath("~/images/"), filename);
-                file.SaveAs(path);
-                // Add avatar reference to model and save
-                product.Images = string.Concat("images/", filename);
+                //var filename = Path.GetFileName(product.Images);
+                //var extension = Path.GetExtension(product.Images);
+                //filename = filename + "-" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-tt") + extension + ".png";
+                //var path = Path.Combine(Server.MapPath("~/images/"), filename);
+                //file.SaveAs(path);
+                //// Add avatar reference to model and save
+                //product.Images = string.Concat("images/", filename);
+                var ext = Path.GetExtension(file.FileName).ToLower(); //lấy đuôi của file
+                var FileName = Path.GetFileName(file.FileName); // lấy tên file
+                var FileNameNull = FileName.Remove(FileName.LastIndexOf(".")); //lấy mỗi tên file không chưa đuôi file.
+                if (ext == "" || (ext != ".jpg" && ext != ".png" && ext != ".jpeg" && ext != ".gif"))
+                {
+                    ModelState.AddModelError("", "File must be jpg, png, gif");
+                }
+                else if (file.ContentLength > 0 && file.ContentLength < 2048576 && FileName != "")
+                {
+                    var path = Path.Combine(Server.MapPath("~/images/"), FileName);
+                    file.SaveAs(path);
+                    product.Images = string.Concat("images/", FileName);
+
+                    ModelState.AddModelError("", "File saved successfully");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The file doesn't exist or the file is larger than 2MB");
+                }
+
 
                 if (await dao.Add(product))
                 {
@@ -129,13 +149,32 @@ namespace restaurant.Controllers
                 var extension = Path.GetExtension(product.Images);
                 filename = filename + "-" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm-tt") + extension + ".png";
                 var path = Path.Combine(Server.MapPath("~/images/"), filename);
-                if(file != null)
+                if (file != null)
                 {
                     file.SaveAs(path);
                 }
-                
+
                 // Add avatar reference to model and save
                 product.Images = string.Concat("images/", filename);
+                //file = Request.Files["file"];
+                //var ext = Path.GetExtension(file.FileName).ToLower(); //lấy đuôi của file
+                //var FileName = Path.GetFileName(file.FileName); // lấy tên file
+                //var FileNameNull = FileName.Remove(FileName.LastIndexOf(".")); //lấy mỗi tên file không chưa đuôi file.
+                //if (ext == "" || (ext != ".jpg" && ext != ".png" && ext != ".jpeg" && ext != ".gif"))
+                //{
+                //    ModelState.AddModelError("", "File must be jpg, png, gif");
+                //}
+                //else if (file.ContentLength > 0 && file.ContentLength < 2048576 && FileName != "")
+                //{
+                //    var path = Path.Combine(Server.MapPath("~/images/"), FileName);
+                //    file.SaveAs(path);
+                //    product.Images = string.Concat("images/", filename);
+                //    ModelState.AddModelError("", "File saved successfully");
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("", "The file doesn't exist or the file is larger than 2MB");
+                //}
 
                 await dao.Update(product);
                 return RedirectToAction("Index");

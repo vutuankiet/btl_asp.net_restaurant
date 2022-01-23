@@ -131,8 +131,8 @@ html {
 
 @media only screen and (min-width: 800px) {
     .bg-admin {
-        /*background-image: url("../images/bg-web-admin.png");*/
-        background-color: #122435;
+        /*background-image: url("../images/bg-admin-newyear.jpg");*/
+        background-color: #101010;
         object-fit: cover;
         position: relative;
         top: 0px;
@@ -164,8 +164,8 @@ html {
 }
 
 .bg-admin {
-    /*background-image: url("../images/bg-web-admin.png");*/
-    background-color: #122435;
+    /*background-image: url("../images/bg-admin-newyear.jpg");*/
+    background-color: #101010;
     object-fit: cover;
     position: relative;
     top: 0px;
@@ -204,3 +204,19 @@ html {
     width: calc(100% - 180px);
     float: right;
 }
+
+.table-text:hover {
+    color: #bf9e71!important;
+}
+
+.border-bottom-animation {
+    color: white;
+}
+
+    .border-bottom-animation:hover {
+        display: block;
+        content: '';
+        color: #bf9e71 !important;
+        border-bottom: solid 3px #bf9e71;
+        transition: transform 300ms ease-in-out;
+    }

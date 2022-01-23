@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Error 404 NotFound";
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Custom fonts for this template-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/images/logoCofee.png" type="image/x-icon">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+    <!-- Custom styles for this template-->
+    <title>@ViewBag.Title - Master Blend</title>
+</head>
+
+@Styles.Render("~/Error/css")
+@Scripts.Render("~/Error/js")
+
+<div class="text">
+    <div>ERROR</div>
+    <h1>404</h1>
+    <hr>
+    <div><p>Page Not Found</p></div>
+    @Html.ActionLink(" Go to home", "Index", "Home", routeValues: null, htmlAttributes: new { id = "homeLink", @class = "font-weight-bold border-bottom-animation fas fa-home mt-2" })
+
+</div>
+
+<div class="astronaut">
+    <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png" alt="" class="src">
+</div>

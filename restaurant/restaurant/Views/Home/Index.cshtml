@@ -9,10 +9,6 @@
     ViewBag.Title = "Home Restaurants";
 }
 <style>
-    #dashboard {
-        color: #f7b924 !important;
-    }
-
     #homeLink {
         color: #bf9e71 !important;
     }
@@ -232,11 +228,11 @@
     </div>
 </div>
 <div class="container-fluid bg-web">
-    <div class="text-center p-4">
+    @*<div class="text-center p-4">
         <h1 class="text-warning font-family">Discover</h1>
         <h1 class="text-white">BEST COFFEE</h1>
-    </div>
-    <div class="row w-100 text-center p-0 m-auto">
+    </div>*@
+    @*<div class="row w-100 text-center p-0 m-auto">
         <div class="col-12 col-sm-6 col-md-6 col-lg-3 py-2">
             <div class="card background-hidden text-light w-100 shadow-animation">
                 <img class="card-img-top" src="~/images/menu1.png" alt="menu-coffee">
@@ -294,7 +290,7 @@
             </div>
         </div>
     </div>
-    <hr class="my-4">
+    <hr class="my-4">*@
     @*<div class="content-background p-4">
         <div class="container">
             <div class="row m-0">
@@ -408,15 +404,18 @@
             </div>
         </div>
     </div>*@
-    <hr class="my-4">
+    @*<hr class="my-4">*@
     <div class="row p-2 content-background">
-        <div class="col-12 col-sm-12 col-md-6 padding">
+        <div class="text-center p-4 col-12">
+            <h1 class="text-warning font-family">Contact Us</h1>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 padding">
             <iframe class="w-100"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8876739948123!2d105.7739293148618!3d21.037179985993827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455f90fe8ad65%3A0xec38b94cb36de0ab!2zSOG7hyBUaOG7kW5nIMSQw6BvIHThuqFvIENOVFQgLSBUM0ggSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1610878199329!5m2!1svi!2s"
                     width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false"
                     tabindex="0"></iframe>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 p-2">
+        @*<div class="col-12 col-sm-12 col-md-6 p-2">
             <form class="was-validated w-100" action="#" method="post">
                 <div class="form-row">
                     <h2 class="text-light col-12 text-center">BOOK A TABLE</h2>
@@ -482,7 +481,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div>*@
     </div>
 </div>
 <script>

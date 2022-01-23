@@ -4,12 +4,19 @@
     ViewBag.Title = "Manager";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    #managerLink {
+        color: #bf9e71 !important;
+    }
+</style>
+
 <div class="bg-login">
     <div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 text-white bg-form">
         <div class="card-body">
             <h4 class="text-left text-success"><span class="font-weight-normal">Account management</span></h4>
             <hr class="text-dark" />
-            @using (Html.BeginForm("Manager","Account",FormMethod.Post))
+            @using (Html.BeginForm("Manager", "Account", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
@@ -43,35 +50,48 @@
                                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Email", @Type = "email", @readonly = "Readonly", @resquired = "Required" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
-
+                            <h6 class="text-danger col-12">@ViewBag.errorcurentpass</h6>
                             @*<div class="form-group col-12">
-                                <label class="control-label">PassWord<span class="text-danger">*</span></label>
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password", @readonly = "Readonly", @resquired = "Required" } })
-                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                            </div>*@
+                                    <label class="control-label">PassWord<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password", @readonly = "Readonly", @resquired = "Required" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>*@
 
                             <div class="form-group mt-5">
                                 <div class="col-md-offset-2 ml-3 col-md-10 p-0">
-                                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#staticBackdrop">
                                         Save
                                     </button>
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content text-dark">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Enter your password to finish editing your account</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Notify</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group col-12">
+                                                        <label class="control-label">Email<span class="text-danger">*</span></label>
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Email", @Type = "email", @readonly = "Readonly", @resquired = "Required" } })
+                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group col-12">
+                                                        <h6>Do you want to change your account information?</h6>
+                                                    </div>
+                                                    <div class="form-group col-12 d-none">
+                                                        <label class="control-label">RolesID<span class="text-danger">*</span></label>
+                                                        @Html.EditorFor(model => model.RolesID, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "RolesID", @Type = "number", @readonly = "Readonly", @resquired = "Required" } })
+                                                        @Html.ValidationMessageFor(model => model.RolesID, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group col-12 d-none">
                                                         <label class="control-label">PassWord<span class="text-danger">*</span></label>
                                                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password", @readonly = "Readonly", @resquired = "Required" } })
                                                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                                     </div>
-                                                    <div class="form-group col-12">
+                                                    <div class="form-group col-12 d-none">
                                                         <label class="control-label">Confirm Password<span class="text-danger">*</span></label>
                                                         @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password", @readonly = "Readonly", @resquired = "Required" } })
                                                         @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })

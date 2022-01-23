@@ -5,42 +5,57 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 mt-5">
+<style>
+    #contactslink {
+        color: #bf9e71 !important;
+    }
+</style>
+
+<div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6">
     <div class="card-body">
-        <h4 class="text-left text-success"><span class="font-weight-normal">Destail Category</span></h4>
+        <h4 class="text-left text-info"><span class="font-weight-normal">Destail Contact</span></h4>
         <hr class="text-dark" />
         <div class="row">
-            <div class="form-group col-12 col-md-6">
-                <label class="control-label">Email<span class="text-danger">*</span></label>
-                @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Email", @readonly = "Readonly" } })
-                @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-12 col-md-6">
-                <label class="control-label">PhoneNumber<span class="text-danger">*</span></label>
-                @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PhoneNumber", @readonly = "Readonly" } })
-                @Html.ValidationMessageFor(model => model.User.PhoneNumber, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-12 col-md-6">
-                <label class="control-label">FirstName<span class="text-danger">*</span></label>
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName", @readonly = "Readonly" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "vui long khong de trong!", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-12 col-md-6">
-                <label class="control-label">LastName<span class="text-danger">*</span></label>
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "FirstName", @readonly = "Readonly" } })
-                @Html.ValidationMessageFor(model => model.LastName, "vui long khong de trong!", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-12">
-                <label class="control-label col-12 pl-0">Messenger<span class="text-danger">*</span></label>
-                <textarea class="form-control col-12" id="Messenger" name="Messenger" maxlength="500" placeholder="Messenger" readonly>@Model.Messenger</textarea>
-                @*@Html.TextAreaFor(model => model.Messenger, new { htmlAttributes = new { @class = "form-control col-12 text-area", @placeholder = "Messenger", @max = "500" } })*@
-                @Html.ValidationMessageFor(model => model.Messenger, "", new { @class = "text-danger col-12" })
-            </div>
+            <h5 class="col-12">UserName: <span class="font-weight-normal">@Model.User.UserName</span></h5>
+            <h5 class="col-12">FirstName: <span class="font-weight-normal">@Model.FirstName</span></h5>
+            <h5 class="col-12">LastName: <span class="font-weight-normal">@Model.LastName</span></h5>
+            <h5 class="col-12">Email: <span class="font-weight-normal">@Model.User.Email</span></h5>
+            <h5 class="col-12">PhoneNumber: <span class="font-weight-normal">@Model.User.PhoneNumber</span></h5>
+            <hr class="my-2 col-12" />
+            <h5 class="col-12">Messenger:</h5>
+            <p class="font-weight-normal col-12">@Model.Messenger</p>
+
+            @*<div class="form-group col-12 col-md-6">
+            <label class="control-label">Email<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Email", @readonly = "Readonly" } })
+            @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">PhoneNumber<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PhoneNumber", @readonly = "Readonly" } })
+            @Html.ValidationMessageFor(model => model.User.PhoneNumber, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">FirstName<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName", @readonly = "Readonly" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12 col-md-6">
+            <label class="control-label">LastName<span class="text-danger">*</span></label>
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "FirstName", @readonly = "Readonly" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-12">
+            <label class="control-label col-12 pl-0">Messenger<span class="text-danger">*</span></label>
+            <textarea class="form-control col-12" id="Messenger" name="Messenger" maxlength="500" placeholder="Messenger" readonly>@Model.Messenger</textarea>
+            @Html.TextAreaFor(model => model.Messenger, new { htmlAttributes = new { @class = "form-control col-12 text-area", @placeholder = "Messenger", @max = "500" } })
+            @Html.ValidationMessageFor(model => model.Messenger, "", new { @class = "text-danger col-12" })
+        </div>*@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 ml-3 col-md-10 p-0">
-                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-outline-warning" })
+            <div class="col-md-offset-2 ml-0 col-md-10 p-0">
+                @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }, htmlAttributes: new { @class = "btn btn-outline-warning" })*@
                 @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-dark" })
             </div>
         </div>

@@ -7,7 +7,15 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<style>
+    #orderslink {
+        color: #bf9e71 !important;
+    }
 
+    .table-hover:before{
+        color: green!important;
+    }
+</style>
 
 
 <!-- Page Heading -->
@@ -20,7 +28,7 @@
 
 <!-- Content Row -->
 <div class="row text-white">
-    <div class="col-10 m-auto" style="background-color: #0000004a; padding-bottom: 26px;">
+    <div class="col-10 mx-auto mb-5" style="background-color: #0000004a; padding-bottom: 26px;">
         <div class="card-body px-0">
             <h2>Orders</h2>
             <div class="d-flex">
@@ -33,7 +41,7 @@
                         <div class="form-inline form-group">
                             <input id="keyword" name="keyword" class="form-control" placeholder="Enter keyword" value="@ViewBag.Keyword" />
                             <input id="page" name="page" value="1" hidden />
-                            <button type="submit" class="btn btn-primary ml-3">Search</button>
+                            <button type="submit" class="btn btn-primary ml-0"><i class="fas fa-search"></i></button>
                         </div>
                     }
                 </div>
@@ -56,10 +64,10 @@
                             Quantity
                         </th>
                         <th>
-                            Discount
+                            Discount (%)
                         </th>
                         <th>
-                            Total payment
+                            Total payment ($)
                         </th>
                         <th>
                             Status
@@ -70,7 +78,7 @@
                 <tbody id="DataSearching">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr class="table-text">
                             <td>
                                 @Html.DisplayFor(modelItem => item.User.UserName)
                             </td>
@@ -99,7 +107,7 @@
                                 <button class="btn btn-block btn-sm @classCss border-dark">@content</button>
                             </td>
                             <td class="text-nowrap" width="1px">
-                                @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })*@
+                                @Html.ActionLink("Change status", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-warning" })
                                 @Html.ActionLink("Detail", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-info" })
                                 @Html.ActionLink("Delete", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm text-white btn-outline-danger" })
                             </td>

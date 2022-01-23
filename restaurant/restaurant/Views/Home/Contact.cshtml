@@ -11,109 +11,125 @@
 </style>
 
 <div class="row p-2 content-background m-auto">
-    <div class="col-12 col-sm-12 col-md-6 padding">
-        <iframe class="w-100"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8876739948123!2d105.7739293148618!3d21.037179985993827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455f90fe8ad65%3A0xec38b94cb36de0ab!2zSOG7hyBUaOG7kW5nIMSQw6BvIHThuqFvIENOVFQgLSBUM0ggSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1610878199329!5m2!1svi!2s"
-                width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false"
-                tabindex="0"></iframe>
-    </div>
-    <div class="col-12 col-sm-12 col-md-6 p-2 my-auto mx-auto">
-        @*<form class="was-validated w-100" action="#" method="post">
-            <div class="form-row">
-                <h2 class="text-light col-12 text-center">Contact</h2>
-                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
-                    <input class="form-control is-valid background-hidden text-white col-12" type="text"
-                           name="firstName" placeholder="First Name" required>
-                    <div class="invalid-feedback">
-                        Please choose a firstname.
-                    </div>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
-                    <input class="form-control is-valid background-hidden text-white col-12" type="text"
-                           name="lastName" placeholder="Last Name" required>
-                    <div class="invalid-feedback">
-                        Please choose a lastname.
-                    </div>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
-                    <input class="form-control is-valid background-hidden text-white col-12" type="tel" name="phone"
-                           pattern="[0-9]{10}" placeholder="Phone" required>
-                    <div class="invalid-feedback">
-                        Please choose a phone.
-                    </div>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
-                    <input class="form-control is-valid background-hidden text-white col-12" type="email" name="email"
-                           placeholder="Email" required>
-                    <div class="invalid-feedback">
-                        Please choose a email.
-                    </div>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
-                    <textarea class="form-control is-valid background-hidden text-white col-12"
-                              placeholder="Messenger"></textarea>
-                </div>
-                <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="agree"
-                               required>
-                        <label class="custom-control-label" for="agree">
-                            <small>
-                                I agree to <a class="link" href="">the Terms of use and Privacy Policy</a>
-                            </small>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group col-12 col-sm-12">
-                    <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
-                </div>
-            </div>*@
-        @*</form>*@
-
-
-        @if (Session["ID"] != null)
-        {
-            using (Html.BeginForm("Contact", "Home"))
-            {
-        <div class="row">
-            <h5 class="text-white col-12 ml-0 pl-0">Contact Us</h5>
-            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
-                <label class=" text-white">Email<span class="text-danger">*</span></label>
-                <input class="form-control col-12" readonly value="@Session["Email"]" />
-                @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
-                @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
-            </div>
-            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
-                <label class=" text-white">PhoneNumber<span class="text-danger">*</span></label>
-                <input class="form-control col-12" readonly value="@Session["PhoneNumber"]" />
-                @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
-                @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
-            </div>
-            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
-                <label class=" text-white">FirstName<span class="text-danger">*</span></label>
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
-                <label class=" text-white">LastName<span class="text-danger">*</span></label>
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            </div>
-            <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 pl-0">
-                <label class=" text-white">Messenger<span class="text-danger">*</span></label>
-                <textarea class="form-control col-12" id="Messenger" name="Messenger" maxlength="500" placeholder="Messenger" required></textarea>
-                @*@Html.TextAreaFor(model => model.Messenger, new { htmlAttributes = new { @class = "form-control col-12 text-area", @placeholder = "Messenger", @max = "500" } })*@
-                @Html.ValidationMessageFor(model => model.Messenger, "", new { @class = "text-danger col-12" })
-            </div>
-            <div class="form-group col-12 col-sm-12">
-                <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
-            </div>
+    @if (Session["ID"] == null)
+    {
+        <div class="col-12 col-sm-12 col-md-12 padding">
+            <iframe class="w-100"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8876739948123!2d105.7739293148618!3d21.037179985993827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455f90fe8ad65%3A0xec38b94cb36de0ab!2zSOG7hyBUaOG7kW5nIMSQw6BvIHThuqFvIENOVFQgLSBUM0ggSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1610878199329!5m2!1svi!2s"
+                    width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false"
+                    tabindex="0"></iframe>
         </div>
+    }
+    else
+    {
+        <div class="col-12 col-sm-12 col-md-6 padding">
+            <iframe class="w-100"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8876739948123!2d105.7739293148618!3d21.037179985993827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313455f90fe8ad65%3A0xec38b94cb36de0ab!2zSOG7hyBUaOG7kW5nIMSQw6BvIHThuqFvIENOVFQgLSBUM0ggSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1610878199329!5m2!1svi!2s"
+                    width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false"
+                    tabindex="0"></iframe>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 p-2 my-auto mx-auto">
+            @*<form class="was-validated w-100" action="#" method="post">
+                <div class="form-row">
+                    <h2 class="text-light col-12 text-center">Contact</h2>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                        <input class="form-control is-valid background-hidden text-white col-12" type="text"
+                               name="firstName" placeholder="First Name" required>
+                        <div class="invalid-feedback">
+                            Please choose a firstname.
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                        <input class="form-control is-valid background-hidden text-white col-12" type="text"
+                               name="lastName" placeholder="Last Name" required>
+                        <div class="invalid-feedback">
+                            Please choose a lastname.
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                        <input class="form-control is-valid background-hidden text-white col-12" type="tel" name="phone"
+                               pattern="[0-9]{10}" placeholder="Phone" required>
+                        <div class="invalid-feedback">
+                            Please choose a phone.
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                        <input class="form-control is-valid background-hidden text-white col-12" type="email" name="email"
+                               placeholder="Email" required>
+                        <div class="invalid-feedback">
+                            Please choose a email.
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                        <textarea class="form-control is-valid background-hidden text-white col-12"
+                                  placeholder="Messenger"></textarea>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6">
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="agree"
+                                   required>
+                            <label class="custom-control-label" for="agree">
+                                <small>
+                                    I agree to <a class="link" href="">the Terms of use and Privacy Policy</a>
+                                </small>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-12">
+                        <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
+                    </div>
+                </div>*@
+            @*</form>*@
+
+            @using (Html.BeginForm("Contact", "Home"))
+            {
+                <div class="row">
+                    <h3 class="text-warning col-12 ml-0 pl-0 text-center">Contact Us</h3>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                        <label class=" text-white">Email<span class="text-danger">*</span></label>
+                        <input class="form-control col-12" readonly value="@Session["Email"]" />
+                        @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                        @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                        <label class=" text-white">PhoneNumber<span class="text-danger">*</span></label>
+                        <input class="form-control col-12" readonly value="@Session["PhoneNumber"]" />
+                        @*@Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Discount", @Min = "1", @Max = "100" } });*@
+                        @*@Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                        <label class=" text-white">FirstName<span class="text-danger">*</span></label>
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                        <label class=" text-white">LastName<span class="text-danger">*</span></label>
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "LastName" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-12 col-sm-12 col-md-12 col-lg-12 pl-0">
+                        <label class=" text-white">Messenger<span class="text-danger">*</span></label>
+                        <textarea class="form-control col-12 textarea" id="Messenger" name="Messenger" maxlength="500"rows="3" placeholder="Messenger" required></textarea>
+                        @*@Html.TextAreaFor(model => model.Messenger, new { htmlAttributes = new { @class = "form-control col-12 text-area", @placeholder = "Messenger", @max = "500" } })*@
+                        @Html.ValidationMessageFor(model => model.Messenger, "", new { @class = "text-danger col-12" })
+                    </div>
+                    <div class="form-group col-12 col-sm-12">
+                        <button type="submit" class="btn btn-outline-light btn-block">Appointment</button>
+                    </div>
+                </div>
 
             }
-        }
-    </div>
+        </div>
+
+    }
+
 </div>
+
+<script>
+    $('.textarea').emojioneArea({
+        pickerPosition: 'top'
+    });
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

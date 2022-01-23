@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="~/images/logoCofee.png" type="image/x-icon">
     <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js">
     </script>
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Master Blend</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -45,7 +48,7 @@
                     <span class="border border-light p-2 rounded"><i class="fas fa-bars"></i></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav m-auto nav-change main-nav">
+                    <ul class="navbar-nav m-auto nav-change main-nav" style="position: relative; right: 34px;">
                         <li class="nav-item p-2">
                             <!--<a class="nav-link text-light d-inline-block" href="home.html">-->
                             @*nav-item-active active*@
@@ -114,7 +117,7 @@
                             <div class="card text-warning background-hidden align-self-sm-end">
                                 <div class="row no-gutters">
                                     <div class="col-sm-4 p-1 m-auto d-table">
-                                        <img src="../images/pizza1.png" class="card-img" alt="block-food">
+                                        <img src="~/images/menu1.png" class="card-img" alt="block-food">
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="card-body">

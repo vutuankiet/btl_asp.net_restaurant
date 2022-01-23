@@ -5,9 +5,15 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<style>
+    #productslink {
+        color: #bf9e71 !important;
+    }
+</style>
+
 <div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 mt-5">
     <div class="card-body">
-        <h4 class="text-left text-success"><span class="font-weight-normal">Them San Pham</span></h4>
+        <h4 class="text-left text-success"><span class="font-weight-normal">Create Product</span></h4>
         <hr class="text-dark" />
         @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
@@ -17,43 +23,43 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="form-group col-12">
-                    <label class="control-label">Ten Loai San Pham<span class="text-danger">*</span></label>
+                    <label class="control-label">Product type<span class="text-danger">*</span></label>
                     @Html.DropDownList("CategoryID", null, new { htmlAttributes = new { @class = "form-control col-12" } })
                     @Html.ValidationMessageFor(model => model.Category.Name, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Ten San Pham<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Ten San Pham" } })
-                    @Html.ValidationMessageFor(model => model.NameProduct, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">Product name<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Product name", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.NameProduct, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Anh San Pham<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Anh San Pham" } })
+                    <label class="control-label">Product image<span class="text-danger">*</span></label>
+                    @*@Html.EditorFor(model => model.Images, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Anh San Pham", @required = "required" } })*@
                     <div>
                         <input type="file" name="file" />
                     </div>
-                    @Html.ValidationMessageFor(model => model.Images, "vui long khong de trong!", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Images, "", new { @class = "text-danger", @required = "required" })
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Date<span class="text-danger">*</span></label>
+                    <label class="control-label">Date Added<span class="text-danger">*</span></label>
                     @*@Html.EditorFor(model => model.Date.Value.ToString("dd-MM-yyyy"), new { htmlAttributes = new { @class = "form-control col-12", Type="date" } })*@
-                    <input type="date" id="Date" name="Date" class="form-control" value="@Model.Date.Value.ToString("yyyy-MM-dd")" />
-                    @Html.ValidationMessageFor(model => model.Date, "vui long khong de trong!", new { @class = "text-danger" })
+                    <input type="date" id="Date" name="Date" required class="form-control" value="@Model.Date.Value.ToString("dd/MM/yyyy")" />
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">So luong<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @Min ="1", @Max="1", @placeholder = "Gia San Pham" } })
-                    @Html.ValidationMessageFor(model => model.Quantily, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">Quantily<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.Quantily, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @Min ="1", @Max="1", @placeholder = "Quantily", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Quantily, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Giam gia<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @Min = "0", @Max = "100", @placeholder = "Gia San Pham" } })
-                    @Html.ValidationMessageFor(model => model.Discount, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">Discount (%)<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @Min = "0", @Max = "100", @placeholder = "Discount", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Gia San Pham<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "Gia San Pham" } })
-                    @Html.ValidationMessageFor(model => model.UnitPrice, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">UnitPrice ($)<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control col-12", @Type = "number", @placeholder = "UnitPrice", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
                 </div>
             </div>
 

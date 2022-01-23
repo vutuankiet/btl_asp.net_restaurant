@@ -16,7 +16,7 @@
 
 
     <!-- Custom styles for this template-->
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Master Blend</title>
     @Styles.Render("~/Admin/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -39,47 +39,52 @@
         <div class="overflow-auto">
             <a style="padding: 10px; display: -webkit-inline-box!important" href="@Url.Action("Index","Home")" class="d-flex mb-3 mb-md-0 me-md-auto mx-auto text-white text-decoration-none border-bottom hide-text">
                 <img class="ml-2 my-auto hide-text" src="~/images/logoCofee.png" width="50" height="50">
-                <h4 class="hide-text ml-3 hide-text text-left" style="display: table-caption;"><span class="text-warning">Mas</span>ter Coff<span class="text-warning">ee</span></h4>
+                <h4 class="hide-text ml-3 hide-text text-left" style="display: table-caption;"><span class="text-warning">Mas</span>ter B<span class="text-warning">lend</span></h4>
             </a>
         </div>
         <hr class="my-2 text-white hide-text" />
         <div class="overflow-auto hide-text">
             <ul class="nav nav-pills flex-column mb-auto text-left" style="display: grid;">
                 <li class="nav-item">
-                    <a href="@Url.Action("Index","Admin")" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 font-weight-bold" id="dashboard">
+                    <a href="@Url.Action("Index","Admin")" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="dashboardlink">
                         <i style="font-size: 24px;" class="fas fa-chart-line"></i><p class="ml-2 mb-0" title="Dashboard">Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/roles" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Roles">
+                    <a href="/roles" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="roleslink" title="Roles">
                         <i style="font-size: 24px;" class="fas fa-user-cog"></i><p class="ml-2 mb-0">Roles</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/users" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Users">
+                    <a href="/users" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="userslink" title="Users">
                         <i style="font-size: 24px;" class="fas fa-users-cog"></i><p class="ml-2 mb-0">Users</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/categories" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0" title="Categories">
+                    <a href="/categories" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation"id="categorieslink" title="Categories">
                         <i style="font-size: 24px;" class="fas fa-clipboard-list"></i><p class="ml-2 mb-0">Category</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/products" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Products">
+                    <a href="/products" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="productslink" title="Products">
                         <i style="font-size: 24px;" class="fas fa-utensils"></i><p class="ml-2 mb-0">Products</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/orders" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Orders">
+                    <a href="/orders" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="orderslink" title="Orders">
                         <i style="font-size: 24px;" class="fas fa-shopping-cart"></i><p class="ml-2 mb-0">Orders</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/contacts" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="Orders">
+                    <a href="/contacts" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="contactslink" title="Contacts">
                         <i style="font-size: 24px;" class="fas fa-file-signature"></i><p class="ml-2 mb-0">Contacts</p>
                     </a>
                 </li>
+                @*<li class="nav-item">
+                    <a href="@Url.Action("GamePlay","Admin")" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix border-bottom-animation" id="gameLink" title="Contacts">
+                        <i style="font-size: 24px;" class="fas fa-gamepad"></i><p class="ml-2 mb-0">GamePlay</p>
+                    </a>
+                </li>*@
                 @*<li class="nav-item">
                     <a href="/orderdestails" style="display: -webkit-inline-box; width: -webkit-fill-available;" class="nav-link text-white mx-1 py-0 clearfix" title="OrderDestails">
                         <i style="font-size: 24px;" class="fas fa-envelope"></i><p class="ml-2 mb-0">OrderDestails</p>
@@ -109,15 +114,15 @@
             @*<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
                     <i class="fas fa-align-left"></i>
                 </button>*@
-            <a style="padding: 0px;" href="#" class="navbar-brand navbar-branch-admin text-white hide-text">
+            @*<a style="padding: 0px;" href="#" class="navbar-brand navbar-branch-admin text-white hide-text">
                 <img class="ml-2 my-auto hide-text" src="~/images/logoCofee.png" width="50" height="50">
-                <h4 class="hide-text p-2 m-auto hide-text text-left" style="display: table-caption;"><span class="text-warning my-auto">Mas</span>ter Coff<span class="text-warning">ee</span></h4>
-            </a>
+                <h4 class="hide-text p-2 m-auto hide-text text-left" style="display: table-caption;"><span class="text-warning my-auto">Mas</span>ter B<span class="text-warning">lend</span></h4>
+            </a>*@
             @*<a class="navbar-brand"><img class="ml-2 my-auto" src="~/images/logoCofee.png" width="50" height="50"></a>*@
 
-            <button class="navbar-toggler text-white border-white" style="margin-right: 10px;" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            @*<button class="navbar-toggler text-white border-white" style="margin-right: 10px;" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="text-white"><i class="fas fa-sliders-h"></i></span>
-            </button>
+            </button>*@
             @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -129,14 +134,14 @@
                         </div>
                     </div>
                 </form>*@
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            @*<div class="collapse navbar-collapse" id="navbarTogglerDemo02">*@
                 <ul class="navbar-nav ml-auto">
 
                     @Html.Partial("IndexPartialView\\NavbarAdminUlView")
 
                 </ul>
 
-            </div>
+            @*</div>*@
         </nav>
 
         <!--<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow sticky-top">

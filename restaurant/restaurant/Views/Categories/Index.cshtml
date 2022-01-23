@@ -8,7 +8,11 @@
 }
 
 
-
+<style>
+    #categorieslink {
+        color: #bf9e71 !important;
+    }
+</style>
 
 <!-- Page Heading -->
 @*<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -20,7 +24,7 @@
 
 <!-- Content Row -->
 <div class="row text-white">
-    <div class="col-10 m-auto" style="background-color: #0000004a; padding-bottom: 26px;">
+    <div class="col-10 mx-auto mb-5" style="background-color: #0000004a; padding-bottom: 26px;">
         <div class="card-body px-0">
             <h2>Categories</h2>
             <div class="d-flex">
@@ -33,7 +37,7 @@
                         <div class="form-inline form-group">
                             <input id="keyword" name="keyword" class="form-control" placeholder="Enter keyword" value="@ViewBag.Keyword" />
                             <input id="page" name="page" value="1" hidden />
-                            <button type="submit" class="btn btn-primary ml-3">Search</button>
+                            <button type="submit" class="btn btn-primary ml-0"><i class="fas fa-search"></i></button>
                         </div>
                     }
                 </div>
@@ -52,7 +56,7 @@
                 <tbody id="DataSearching">
                     @foreach (var item in Model)
                     {
-                        <tr>
+                        <tr class="table-text">
                             <td>
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>

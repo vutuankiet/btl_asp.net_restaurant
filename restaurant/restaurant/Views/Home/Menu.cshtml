@@ -70,6 +70,8 @@
                                 <div class="row m-auto" id="DataSearching">
                                     @foreach (var item in Model)
                                     {
+                                        if (item.Category.Name == "Food" || item.Category.Name == "Drink" || item.Category.Name == "Cake")
+                                        {
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 py-2 text-left">
                                             <div class="card background-hidden text-light w-100 shadow-animation border border-secondary">
                                                 <div class="overflow-hidden border-bottom-animation">
@@ -99,7 +101,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         
+                                        }
                                     }
+                                    <div class="mx-auto col-12 text-center">
+                                            @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+                                        </div>
                                 </div>
 
                             </div>
@@ -138,8 +145,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         }
                                     }
+                                    <div class="mx-auto col-12 text-center">
+                                            @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+                                        </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-3-tab">
@@ -177,8 +188,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         }
                                     }
+                                    <div class="mx-auto col-12 text-center">
+                                            @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+                                        </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
@@ -216,12 +231,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         }
                                     }
+                                    <div class="mx-auto col-12 text-center">
+                                            @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+                                        </div>
                                 </div>
                             </div>
-                            <div class="mx-auto">
-                                @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))
+                            <div class="row">
+                                
                             </div>
                         </div>
                     </div>
@@ -234,16 +253,16 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title text-danger" id="exampleModalLabel">Notify!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Ban Can Dang Nhap De Su Dung Chuc Nang!
+            <div class="modal-body text-danger">
+                You need to be logged in to use this feature!
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -103,5 +103,12 @@ namespace restaurant.Models.DAO
 
             return true;
         }
+        public bool CheckEmail(string email)
+        {
+            using (QL_NhaHangEntities1 db = new QL_NhaHangEntities1())
+            {
+                return db.Users.Count(x => x.Email == email) > 0;
+            }
+        }
     }
 }

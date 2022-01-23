@@ -5,9 +5,15 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<style>
+    #userslink {
+        color: #bf9e71 !important;
+    }
+</style>
+
 <div class="card shadow container col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 mt-5">
     <div class="card-body">
-        <h4 class="text-left text-success"><span class="font-weight-normal">Them Nguoi Dung</span></h4>
+        <h4 class="text-left text-success"><span class="font-weight-normal">Create User</span></h4>
         <hr class="text-dark" />
         @using (Html.BeginForm())
         {
@@ -17,45 +23,49 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">ID Nguoi Dung<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control col-12", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.ID, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">User ID<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control col-12", @readonly = "readonly", @required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Ten Role<span class="text-danger">*</span></label>
-                    @Html.DropDownList("RolesID", null, new { htmlAttributes = new { @class = "form-control col-12" } })
-                    @Html.ValidationMessageFor(model => model.Role.NameRoles, "", new { @class = "text-danger" })
+                    <label class="control-label">Role name<span class="text-danger">*</span></label>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            @Html.DropDownList("RolesID", null, new { htmlAttributes = new { @class = "form-control col-12", @required = "Required" } })
+                            @Html.ValidationMessageFor(model => model.Role.NameRoles, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">Ten Nguoi Dung<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Ten Nguoi Dung" } })
-                    @Html.ValidationMessageFor(model => model.UserName, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">User name<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "User name", @required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-12 col-md-6">
                     <label class="control-label">Email<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Email", @Type = "email" } })
-                    @Html.ValidationMessageFor(model => model.Email, "vui long khong de trong!", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Email", @Type = "email", @required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-12 col-md-6">
                     <label class="control-label">PassWord<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password" } })
-                    @Html.ValidationMessageFor(model => model.Password, "vui long khong de trong!", new { @class = "text-danger" })
-                </div>
-                
-                <div class="form-group col-12 col-md-6">
-                    <label class="control-label">ConfirmPassword<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password" } })
-                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "vui long khong de trong!", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PassWord", @Type = "password", @required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group col-12 col-md-6">
-                    <label class="control-label">PhoneNumber<span class="text-danger">*</span></label>
-                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "PhoneNumber", @Type = "tel", @pattern = "[0-9]{10}" } })
-                    @Html.ValidationMessageFor(model => model.PhoneNumber, "vui long khong de trong!", new { @class = "text-danger" })
+                    <label class="control-label">ConfirmPassword<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "ConfirmPassword", @Type = "password", @required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-12 col-md-6">
+                    <label class="control-label">Phone number<span class="text-danger">*</span></label>
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control col-12", @placeholder = "Phone number", @Type = "tel", @pattern = "[0-9]{10}", @required = "Required" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
 
